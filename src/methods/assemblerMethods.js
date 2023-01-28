@@ -1,3 +1,6 @@
+// Description: Métodos para el ensamblador
+// Autor: Sebastián Gámez Ariza
+
 const assemblerMethods = {
     // Método para calcular el valor de la hora del ensamblador
     calculateAssemblerHourValue() {
