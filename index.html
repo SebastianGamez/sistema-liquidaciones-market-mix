@@ -205,9 +205,58 @@
                         <img src="https://proexpansion.com/uploads/article/image/1431/larger_camper.jpg" width="580"
                             height="200" alt="">
                         <div>
-
             </form>
         </section>
+         <!-- Ensamblador -->
+         <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh"
+         v-if="render.assembler">
+         <nav class="navbar navbar-dark bg-dark w-100">
+            <div class="container-fluid">
+                <a class="navbar-brand">Bienvenido: Ensamblador</a>
+                <form class="d-flex" role="search">
+                    <button class="btn btn-info" @click="handleLogout">Salir</button>
+                </form>
+            </div>
+        </nav>
+        <br/>
+        <br/>
+        <br/>
+        <form class="d-flex flex-column justify-content-between container border rounded w-70 p-5">
+        <div class="container d-flex flex-column">
+            <div class="container">
+                <div class="container d-flex flex-column w-25">
+                    <h3 class="text-white">Ensamblador</h2>
+                        <br />
+                        <label class="form-label text-white" for="assembler_extrahours">Horas extras:</label>
+                        <input type="text" class="form-input" id="assembler_extrahours"
+                            v-model="assembler.extraHours" />
+                </div>
+                <div class="container d-flex flex-column w-25">
+                    <label class="form-label text-white"
+                        for="assembler_shoesassembled">Zapatos
+                        ensamblados</label>
+                    <input type="text" class="form-input" id="assembler_shoesassembled"
+                        v-model="assembler.shoesAssembled" />
+                </div>
+                <div class="container d-flex flex-column w-25">
+                    <label class="form-label text-white" for="assembler_sneakersassembled">zapatillas ensambladas</label>
+                    <input type="text" class="form-input" id="assembler_sneakersassembled"
+                        v-model="assembler.sneakersAssembled" />
+                </div>
+                <div class="container d-flex flex-column w-25">
+                    <label class="form-label text-white" for="assembler_childrenNumber">Numero de hijos</label>
+                    <input type="text" class="form-input" id="assembler_childrenNumber"
+                        v-model="assembler.childrenNumber" />
+                </div>
+            </div>
+            <br/>
+            <div class="container w-100 d-flex justify-content-center">
+                <input class="btn btn-secondary w-25 mx-2" type="" value="Calcular" />
+            </div>
+            <br/>
+        </br>
+
+    </form>
     </main>
 </body>
 <!--SweetAlert-->
