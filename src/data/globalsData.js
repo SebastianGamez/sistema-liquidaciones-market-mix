@@ -13,6 +13,9 @@ let globalsData = {
     },
     assembler:{
         salary: undefined,
-        maxAssembledAmount: undefined
+        shoesAssemblerPrice: undefined,
+        sneakersAssemblerPrice: undefined,
+        maxShoesAssembledAmount: undefined,
+        maxSneakersAssembledAmount: undefined,
     }
 }

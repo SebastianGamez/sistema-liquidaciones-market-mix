@@ -18,6 +18,8 @@ const app = createApp({
                 secretary: false,
                 seller: false,
             },
+
+            liquidations: [],
             
             // Input del pin que ingresa el usuario para iniciar sesión
             pin: '',
@@ -31,11 +33,15 @@ const app = createApp({
                     salary: '',
                     shoesPrice: '',
                     sneakersPrice: '',
-                    commission: ''
+                    shoesCommission: '',
+                    sneakersCommission: ''
                 },
                 assembler:{
                     salary: '',
-                    maxAssembledAmount: ''
+                    shoesAssemblerPrice: '',
+                    sneakersAssemblerPrice: '',
+                    maxShoesAssembledAmount: '',
+                    maxSneakersAssembledAmount: '',
                 }
             },
 
@@ -50,7 +56,32 @@ const app = createApp({
                 sneakers: ''
             },
 
+            // Input para los reportes
+            reports: {
+                secretary: {
+                    extraHours: '',
+                    total: ''
+                },
+                seller: {
+                    commission: '',
+                    bonus: '',
+                    total: ''
+                },
+            }
+
         }
+    },
+
+    mounted() {
+        // Se verifica si el usuario ya ha iniciado sesión
+        if (localStorage.getItem('user') && localStorage.getItem('role')) {
+            // Se obtiene el rol del usuario
+            const user = JSON.parse(localStorage.getItem('role'));
+            // Se muestra el componente correspondiente al rol del usuario y se oculta el componente de login
+            this.render[user.role] = true;
+            this.render.login = false;
+        }
+        
     },
     
     methods:{
@@ -65,15 +96,6 @@ const app = createApp({
         ...sellerMethods,
 
     },
-
-    // Se ejecuta antes de que se muestre el componente
-    mounted() {
-        // Si el usuario ya ha iniciado sesión, se muestra el componente correspondiente
-        if(this.getName() && this.getRole()){
-            this.render.login = false;
-            this.render[this.getRole()] = true;
-        }
-    }
 
 });
 

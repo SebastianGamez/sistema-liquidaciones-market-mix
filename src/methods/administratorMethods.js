@@ -35,11 +35,15 @@ const administratorMethods = {
                 salary: '',
                 shoesPrice: '',
                 sneakersPrice: '',
-                commission: ''
+                shoesCommission: '',
+                sneakersCommission: ''
             },
             assembler:{
                 salary: '',
-                maxAssembledAmount: ''
+                shoesAssemblerPrice: '',
+                sneakersAssemblerPrice: '',
+                maxShoesAssembledAmount: '',
+                maxSneakersAssembledAmount: '',
             }
         }
     },
@@ -56,6 +60,21 @@ const administratorMethods = {
 
         }
         
+    },
+    getLiquidations(){
+        // Se obtienen las liquidaciones
+        this.liquidations = liquidationsData;
+        if(liquidationsData.length > 0){
+            // Se muestra un mensaje de éxito
+            swal("¡Éxito!", "Se han obtenido las liquidaciones", "success");
+            // se muestran las liquidaciones y se ocultan los botones
+            this.render.liquidations = true;
+            this.render.liquidationButtons = false;
+        } else{
+            // Se muestra un mensaje de error
+            swal("¡Error!", "No hay liquidaciones", "error");
+        }
     }
+    
 
 }

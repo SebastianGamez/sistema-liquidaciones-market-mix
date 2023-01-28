@@ -37,6 +37,23 @@ const secretaryMethods = {
         // Se retorna la liquidación del secretario
         return secretarySalary;
     },
+    // Mostrar la liquidación del secretario
+    getSecretaryLiquidation(){
+        // Se obtiene la liquidación del secretario
+        this.reports.secretary.total = this.calculateSecretaryLiquidation();
+        this.reports.secretary.extraHours = this.calculateSecretaryExtraHourValue;
+        // Se muestra el componente de liquidación y se ocultan los botones de liquidación
+        this.render.liquidation = true;
+        this.render.liquidationButtons = false;
+        // Se almacena la liquidación del vendedor
+        liquidationData.push({
+            pin: localStorage.getItem("pin"),
+            name: localStorage.getItem("name"), 
+            liquidation: this.this.reports.secretary.total
+        });
+        // Se alerta al usuario con mensaje de éxito
+        swal("¡Éxito!", "Se ha calculado la liquidación del secretary", "success");
+    }
 
 
 }

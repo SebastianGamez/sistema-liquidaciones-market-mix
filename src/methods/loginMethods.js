@@ -62,6 +62,8 @@ const loginMethods = {
                         // Se asigna el nombre y el rol del ensamblador
                         localStorage.setItem('name', assembler);
                         localStorage.setItem('role', 'assembler');
+                        // Se asigna el pin del ensamblador en el localStorage
+                        localStorage.setItem('pin', this.pin);
                         // Elimina el pin ingresado
                         this.pin = '';
                         // Enviar alerta con swal
@@ -88,7 +90,9 @@ const loginMethods = {
                         this.render.login = false;
                         // Se asigna el nombre y el rol de la secretaria
                         localStorage.setItem('name', secretary);
-                        localStorage.setItem('role', 'secretary')
+                        localStorage.setItem('role', 'secretary');
+                        // Se asigna el pin de la secretaria en el localStorage
+                        localStorage.setItem('pin', this.pin);
                         // Elimina el pin ingresado
                         this.pin = '';
                         // Enviar alerta con swal
@@ -116,6 +120,8 @@ const loginMethods = {
                         // Se asigna el nombre y el rol del vendedor
                         localStorage.setItem('name', seller);
                         localStorage.setItem('role', 'seller');
+                        // Se asigna el pin del vendedor en el localStorage
+                        localStorage.setItem('pin', this.pin);
                         // Elimina el pin ingresado
                         this.pin = '';
                         // Enviar alerta con swal
@@ -142,6 +148,8 @@ const loginMethods = {
         this.render.assembler = false;
         this.render.secretary = false;
         this.render.seller = false;
+        this.render.liquidation = false;
+        this.render.liquidationButtons = true;
         // Se asigna el nombre y el rol del usuario en blanco
         localStorage.removeItem('name');
         localStorage.removeItem('role');
