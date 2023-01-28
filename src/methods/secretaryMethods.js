@@ -41,11 +41,11 @@ const secretaryMethods = {
     getSecretaryLiquidation(){
         // Se obtiene la liquidación del secretario
         this.reports.secretary.total = this.calculateSecretaryLiquidation();
-        this.reports.secretary.extraHours = this.calculateSecretaryExtraHourValue;
+        this.reports.secretary.extraHours = this.calculateSecretaryExtraHourValue * this.secretary.extraHours;
         // Se muestra el componente de liquidación y se ocultan los botones de liquidación
         this.render.liquidation = true;
         this.render.liquidationButtons = false;
-        // Se almacena la liquidación del vendedor
+        // Se almacena la liquidación del secretario
         liquidationData.push({
             pin: localStorage.getItem("pin"),
             name: localStorage.getItem("name"), 

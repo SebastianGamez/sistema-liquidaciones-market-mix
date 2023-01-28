@@ -17,8 +17,11 @@ const app = createApp({
                 login: true,
                 secretary: false,
                 seller: false,
+                liquidation: false,
+                liquidationButtons: true
             },
 
+            // Arreglo que contiene las liquidaciones de los empleados
             liquidations: [],
             
             // Input del pin que ingresa el usuario para iniciar sesión
@@ -56,7 +59,15 @@ const app = createApp({
                 sneakers: ''
             },
 
-            // Input para los reportes
+            // Input para el ensamblador
+            assembler: {
+                extraHours: '',
+                shoesAssembled: '',
+                sneakersAssembled: '',
+                childrenNumber: ''
+            },
+
+            // Variables para los reportes
             reports: {
                 secretary: {
                     extraHours: '',
@@ -65,8 +76,17 @@ const app = createApp({
                 seller: {
                     commission: '',
                     bonus: '',
+                    transportSubsidy: '140606',
                     total: ''
                 },
+                assembler: {
+                    childrenSubsidy: '',
+                    extraHours: '',
+                    shoesBonus: '',
+                    sneakersBonus: '',
+                    transportSubsidy: '140606',
+                    total: ''
+                }
             }
 
         }
