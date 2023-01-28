@@ -1,3 +1,6 @@
+// Description: Este archivo contiene los métodos del administrador
+// Autor: Sebastián Gámez Ariza
+
 const administratorMethods = {
     // Este método se encarga de validar que todos los campos estén llenos
     checkFieldsValues() {

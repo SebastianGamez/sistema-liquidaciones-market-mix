@@ -1,3 +1,6 @@
+// Descripción: Archivo que contiene los métodos relacionados con el Login
+// Autor: Sebastián Gámez Ariza
+
 const loginMethods = {
     // Método para validar si el usuario puede acceder a su interfaz acorde si el administrado ya definió las variables globales
     handleAccess(){

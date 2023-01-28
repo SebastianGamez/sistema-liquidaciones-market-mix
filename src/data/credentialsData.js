@@ -1,3 +1,6 @@
+// Descripción: información de las credenciales para validar el inicio de sesión
+// Autor: Sebastián Gámez Ariza
+
 const credentialsData = {
     administrator: "1234",
     secretaries:{

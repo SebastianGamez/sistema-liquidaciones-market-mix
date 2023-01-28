@@ -1,3 +1,6 @@
+// Descripción: Archivo principal de la aplicación
+// Autor: Sebastián Gámez Ariza
+
 // Importar vue
 const { createApp } = Vue;
 
@@ -39,7 +42,13 @@ const app = createApp({
             // Input del las horas extras que indica el secretario
             secretary: {
                 extraHours: ''
-            }
+            },
+
+            // Input del las zapatos y zapatillas que indica el vendedor
+            seller: {
+                shoes: '',
+                sneakers: ''
+            },
 
         }
     },
@@ -50,6 +59,10 @@ const app = createApp({
         ...loginMethods,
         // Métodos del administrador
         ...administratorMethods,
+        // Métodos de la secretaria
+        ...secretaryMethods,
+        // Métodos del vendedor
+        ...sellerMethods,
 
     },
 

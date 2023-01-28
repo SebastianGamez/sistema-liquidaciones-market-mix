@@ -1,3 +1,6 @@
+// Description: Métodos para el cálculo de datos del secretario
+// Autor: Sebastián Gámez Ariza
+
 const secretaryMethods = {
     // Método para calcular el valor de la hora del secretario
     calculateSecretaryHourValue() {
@@ -19,8 +22,8 @@ const secretaryMethods = {
         // Se retorna el valor de la hora extra del secretario
         return extraHourValue;
     },
-    // Método para calcular el salario del secretario
-    calculateSecretarySalary() {
+    // Método para calcular la liquidación del secretario
+    calculateSecretaryLiquidation () {
         // Se obtienen los datos de las variables globales
         const { secretary } = globalsData;
         // Se obtiene el salario del secretario
@@ -29,9 +32,9 @@ const secretaryMethods = {
         const { extraHours } = this.secretary;
         // Se obtiene el valor de la hora extra del secretario
         const extraHourValue = this.calculateSecretaryExtraHourValue();
-        // Se calcula el salario del secretario
+        // Se calcula la liquidación del secretario
         const secretarySalary = parseInt(salary) + (parseInt(extraHours) * extraHourValue);
-        // Se retorna el salario del secretario
+        // Se retorna la liquidación del secretario
         return secretarySalary;
     },
 
