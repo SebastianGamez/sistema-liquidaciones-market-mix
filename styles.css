@@ -1,4 +1,4 @@
-.input-ingresar{
+.input-ingresar {
     width: 195px;
     text-align: center;
     height: 3.125rem;
@@ -6,25 +6,30 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.btn-ingresar{
+.btn-ingresar {
     width: 195px;
     height: 3.125rem;
     background-color: #515151;
-    border-color: rgb(0, 0,0,0,1);
+    border-color: rgb(0, 0, 0, 0, 1);
     color: white;
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
 }
-.contenedor{
+
+.contenedor {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
-body{
-    background: #373B44;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to top, #4286f4, #373B44);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to top, #4286f4, #373B44); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+body {
+    background: #373B44;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #4286f4, #373B44);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #4286f4, #373B44);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
