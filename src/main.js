@@ -16,14 +16,31 @@ const app = createApp({
                 seller: false,
             },
             
-            // El pin es el código que ingresa el usuario para iniciar sesión
+            // Input del pin que ingresa el usuario para iniciar sesión
             pin: '',
-            
-            // Información de los usuario que se autentica
-            user: {
-                name: '',
-                role: '',
+
+            // Input de las variables globales suministradas por el administrador
+            globalVariables: {
+                secretary: {
+                    salary: ''
+                },
+                seller: {
+                    salary: '',
+                    shoesPrice: '',
+                    sneakersPrice: '',
+                    commission: ''
+                },
+                assembler:{
+                    salary: '',
+                    maxAssembledAmount: ''
+                }
+            },
+
+            // Input del las horas extras que indica el secretario
+            secretary: {
+                extraHours: ''
             }
+
         }
     },
     
@@ -31,8 +48,20 @@ const app = createApp({
         
         // Login methods
         ...loginMethods,
+        // Métodos del administrador
+        ...administratorMethods,
 
+    },
+
+    // Se ejecuta antes de que se muestre el componente
+    mounted() {
+        // Si el usuario ya ha iniciado sesión, se muestra el componente correspondiente
+        if(this.getName() && this.getRole()){
+            this.render.login = false;
+            this.render[this.getRole()] = true;
+        }
     }
+
 });
 
 // Importar componentes
