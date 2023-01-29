@@ -17,19 +17,25 @@
 <body>
         <main id="app" style="width: 100%;">
             <!-- Login form -->
+            <!-- Seccion de ingreso-->
+            <!--Con la directiva v-if se renderiza la seccion que se requiere-->
             <section class="d-flex justify-content-center align-items-center w-100" style="height:100vh" v-if="render.login" v-cloak >
                 <div class="contenedor">
                     <h1 class="text-white my-5"><b><i>Sistema de Liquidaciones</i></b></h1>
                     <form @submit.prevent="handleSubmit">
+                          <!-- Input para diligenciar el pin de ingreso-->
                         <input type="text" class="form-control input-ingresar mb-3" placeholder="PIN de Ingreso"
                             id="pin" v-model="pin" />
+                            <!--Boton de enviar-->
                         <button type="submit" class="btn-ingresar">Send</button>
                     </form>
                 </div>
 
             </section>
             <!-- Administrator -->
+            <!-- Seccion de administrador-->
             <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh" v-if="render.administrator" v-cloak >
+                <!-- Navbar de bienvenida y cierre de sesion-->
                 <nav class="navbar navbar-dark bg-dark w-100" v-cloak>
                     <div class="container-fluid">
                         <a class="navbar-brand">Bienvenido: Admin</a>
@@ -40,41 +46,49 @@
                 </nav>
                     <div class="container w-100 h-100 d-flex flex-column justify-content-center align-items-center" v-if="!render.liquidation" v-cloak>
                         <form class="d-flex flex-column justify-content-between align-items-center h-75">
+                            <!-- Diligenciamiento de las variables globales para cada cargo-->
                             <h1 class="text-white my-3">Variables globales</h1>
                             <div class="container d-flex flex-row">
-
                                 <div class="container d-flex flex-column w-25">
+                                    <!-- Diligenciamiento de las variables globales para secretario-->
                                     <h3 class="text-white">Secretario</h3>
+                                   <!--Input de sueldo base del secretario-->
                                         <label class="form-label text-white" for="secretary_salary">Sueldo base:</label>
                                         <input type="text" class="form-input" id="secretary_salary"
                                             v-model.number="globalVariables.secretary.salary" />
                                 </div>
                                 <div class="container">
+                                     <!-- Diligenciamiento de las variables globales para vendedor-->
                                     <h3 class="text-white">Vendedor</h3>
                                     <div class="container d-flex flex-column">
+                                        <!--Input de sueldo base-->
                                         <label class="form-label text-white" for="seller_salary">Sueldo base:</label>
                                         <input type="text" class="form-input" id="seller_salary"
                                             v-model.number="globalVariables.seller.salary" />
                                     </div>
                                     <div class="container d-flex flex-column">
+                                         <!--Input de precio de zapatos-->
                                         <label class="form-label text-white" for="seller_shoesprice">Precio por zapatos
                                             vendidos:</label>
                                         <input type="text" class="form-input" id="seller_shoesPrice"
                                             v-model.number="globalVariables.seller.shoesPrice" />
                                     </div>
                                     <div class="container d-flex flex-column">
+                                        <!--Input de precio de zapatillas-->
                                         <label class="form-label text-white" for="seller_sneakersprice">Precio por
                                             zapatillas vendidas:</label>
                                         <input type="text" class="form-input" id="seller_sneakersPrice"
                                             v-model.number="globalVariables.seller.sneakersPrice" />
                                     </div>
                                     <div class="container d-flex flex-column">
+                                        <!--Input de comision por zapatos-->
                                         <label class="form-label text-white" for="seller_shoescommission">Comisión de
                                             zapato:</label>
                                         <input type="text" class="form-input" id="seller_shoescommission"
                                             v-model.number="globalVariables.seller.shoesCommission" />
                                     </div>
                                     <div class="container d-flex flex-column">
+                                        <!--Input de comision por zapatillas-->
                                         <label class="form-label text-white" for="seller_sneakersommission">Comisión de
                                             zapatilla:</label>
                                         <input type="text" class="form-input" id="seller_sneakerscommission"
@@ -82,25 +96,30 @@
                                     </div>
                                 </div>
                                 <div class="container">
+                                     <!-- Diligenciamiento de las variables globales para el ensamblador-->
                                     <h3 class="text-white">Ensamblador</h3>
                                     <div class="container d-flex flex-column">
+                                        <!--Input sueldo base-->
                                         <label class="form-label text-white" for="assembler_salary">Sueldo base:</label>
                                         <input type="text" class="form-input" id="assembler_salary"
                                             v-model.number="globalVariables.assembler.salary" />
                                     </div>
                                     <div class="container d-flex flex-column">
+                                         <!--Input precio de zapatos-->
                                         <label class="form-label text-white" for="assembler_shoesassemblerprice">Precio
                                             de zapatos:</label>
                                         <input type="text" class="form-input" id="assembler_shoesassemblerprice"
                                             v-model.number="globalVariables.assembler.shoesAssemblerPrice" />
                                     </div>
                                     <div class="container d-flex flex-column">
+                                        <!--Input precio de zapatilla-->
                                         <label class="form-label text-white"
                                             for="assembler-sneakersassemblerprice">Precio de zapatillas:</label>
                                         <input type="text" class="form-input" id="assembler-sneakersassemblerprice"
                                             v-model.number="globalVariables.assembler.sneakersAssemblerPrice" />
                                     </div>
                                     <div class="container d-flex flex-column">
+                                        <!--Input maximo de zapatos ensamblados-->
                                         <label class="form-label text-white"
                                             for="assembler_maxshoesassembledamount">Máximo de zapatos
                                             ensamblados:</label>
@@ -108,6 +127,7 @@
                                             v-model.number="globalVariables.assembler.maxShoesAssembledAmount" />
                                     </div>
                                     <div class="container d-flex flex-column">
+                                         <!--Input maximo de zapatillas ensambladas-->
                                         <label class="form-label text-white" for="assembler_assembledamount">Máximo de
                                             zapatillas ensambladas:</label>
                                         <input type="text" class="form-input" id="assembler_assembledamount"
@@ -118,13 +138,17 @@
                             <br>
                         </form>
                         <div class="container w-100 d-flex justify-content-center p-5" >
+                            <!--Boton de enviar la informacion registrada desde el administrador-->
                             <button class="btn btn-success w-25 mx-2" value="Send" @click="handleSubmitAdministrator">Enviar</button>
+                            <!--Boton para limpiar el formulario a la hora de enviar-->
                             <button class="btn btn-danger w-25 mx-2" @click="clearFormAdministrator">Limpiar</button>
+                            <!--Boton para visualizar los reportes de liquidacion de todos los cargos-->
                             <button class="btn btn-info w-25 mx-2" @click="getLiquidations">Obtener reportes</button>
                         </div>
                     </div>
                 <div class="container p-2">
                 </div>
+                <!--Tabla para mostrar la liquidacion de todos los cargos-->
                 <div class="container h-100 d-flex justify-content-center align-items-center" v-if="render.liquidation" v-cloak>
                     <table class="table table-dark table-hover table-bordered">
                         <thead>
@@ -134,6 +158,7 @@
                             <th>Liquidación</th>
                         </thead>
                         <tbody>
+                            <!--recorrer el arreglo y mostrar informacion correspondiente de cada cargo-->
                             <tr v-for="(liquidation) in liquidations">
                                 <td>{{liquidation.pin}}</td>
                                 <td>{{liquidation.name}}</td>
@@ -145,10 +170,11 @@
 
         </section>
         <!-- Secretario -->
-
+        <!-- Seccion de perfil secretario -->
         <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh" v-if="render.secretary" v-cloak>
             <nav class="navbar navbar-dark bg-dark w-100">
                 <div class="container-fluid">
+                    <!-- Navbar de bienvenida y cierre de sesion -->
                     <a class="navbar-brand">Bienvenido: Secretario</a>
                     <form class="d-flex" role="search">
                         <button class="btn btn-info" @click="handleLogout">Salir</button>
@@ -162,8 +188,10 @@
                     <div class="container d-flex flex-column">
                         <div class="container">
                             <div class="container d-flex flex-column w-25">
+                                <!-- Informacion a diligenciar en el rol secretario -->
                                 <h3 class="text-white">Secretario</h3>
                                     <br />
+                                    <!-- input de las horas extras -->
                                     <label class="form-label text-white" for="secretary_extrahours">Horas extras:</label>
                                     <input type="text" class="form-input" id="secretary_extrahours"
                                         v-model.number="secretary.extraHours" />
@@ -171,6 +199,7 @@
                         </div>
                         <br>
                         <div class="container w-100 d-flex justify-content-center">
+                            <!-- Boton de calcular, que al dar click te miuestra una tabla de los resultados obtenidos-->
                             <input class="btn btn-success w-25 mt-4" type="button" value="Calcular" @click="getSecretaryLiquidation" />
                         </div>
                         <br />
@@ -178,6 +207,7 @@
                 </form>
                 <img src="https://uploadgerencie.com/imagenes/calculo-horas-extras.png" width="380" class="rounded mx-2">
             </div>
+            <!-- Tabla donde muestre los resultados obtenidos del secretario-->
             <div class="container d-flex justify-content-center align-items-center h-100" v-if="render.liquidation" v-cloak>
                 <table class="table table-dark table-hover table-bordered">
                     <thead>
@@ -193,8 +223,9 @@
             </div>
         </section>
         <!-- Vendedor -->
-
+         <!-- Seccion de perfil vendedor -->
         <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh" v-if="render.seller" v-cloak>
+             <!-- Navbar de bienvenido y cierre de sesion -->
             <nav class="navbar navbar-dark bg-dark w-100">
                 <div class="container-fluid">
                     <a class="navbar-brand">Bienvenido: Vendedor</a>
@@ -210,19 +241,23 @@
                 class="d-flex flex-column justify-content-center align-items-center container w-50 p-2"
                 v-if="!render.liquidation" v-cloak>
                     <div class="container d-flex flex-column justify-content-center align-items-center border rounded w-100">
+                         <!-- Informacion a diligenciar en el rol vendedor -->
                         <h2 class="text-white">Vendedor</h2>
                         <div class="container">
                             <div class="container d-flex flex-column">
+                                <!-- Input cantidad de zapatos -->
                                 <label class="form-label text-white" for="seller_shoes">Cantidad de zapatos </label>
                                 <input type="text" class="form-input" id="seller_shoes" v-model.number="seller.shoes" />
                             </div>
                             <div class="container d-flex flex-column">
+                                <!-- Input cantidad de zapatilla -->
                                 <label class="form-label text-white" for="seller_sneakers">Cantidad de zapatillas</label>
                                 <input type="text" class="form-input" id="seller_sneakers" v-model.number="seller.sneakers" />
                             </div>
                         </div>
                         <br>
                         <div class="container w-100 d-flex justify-content-center">
+                            <!-- Boton para calcular, al dar click se mostrara en una tabla el resultado obtenido-->
                             <input class="btn btn-success w-50 my-4" value="Calcular" @click="getSellerLiquidation" />
                         </div>
                         <br />
@@ -232,6 +267,7 @@
                     <img src="https://proexpansion.com/uploads/article/image/1431/larger_camper.jpg" width="380" alt="" class="rounded">
                 </div>
             </div>
+             <!-- Tabla para mostrar la informacion obtenida-->
             <div class="container d-flex justify-content-center align-items-center h-100" v-if="render.liquidation" v-cloak>
                 <table class="table table-dark table-hover table-bordered">
                     <thead>
@@ -252,8 +288,10 @@
             </div>
         </section>
          <!-- Ensamblador -->
+         <!-- Seccion de perfil ensamblador-->
          <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh"
          v-if="render.assembler" v-cloak>
+         <!-- creacion de un navbar de bienvenida y cierre de sesion-->
          <nav class="navbar navbar-dark bg-dark w-100">
             <div class="container-fluid">
                 <a class="navbar-brand">Bienvenido: Ensamblador</a>
@@ -269,13 +307,16 @@
         <div class="container d-flex flex-column border rounded p-5">
             <div class="container">
                 <div class="container d-flex flex-column w-25">
+                    <!-- Informacion a diligenciar en el rol ensamblador -->
                     <h3 class="text-white">Ensamblador</h2>
                         <br />
+                        <!-- Input horas extras -->
                         <label class="form-label text-white" for="assembler_extrahours">Horas extras:</label>
                         <input type="text" class="form-input" id="assembler_extrahours"
                             v-model.number="assembler.extraHours" />
                 </div>
                 <div class="container d-flex flex-column w-25">
+                    <!-- Input de zapatos ensamblados -->
                     <label class="form-label text-white"
                         for="assembler_shoesassembled">Zapatos
                         ensamblados</label>
@@ -283,11 +324,13 @@
                         v-model.number="assembler.shoesAssembled" />
                 </div>
                 <div class="container d-flex flex-column w-25">
+                     <!-- Input de zapatillas ensambladas -->
                     <label class="form-label text-white" for="assembler_sneakersassembled">zapatillas ensambladas</label>
                     <input type="text" class="form-input" id="assembler_sneakersassembled"
                         v-model.number="assembler.sneakersAssembled" />
                 </div>
                 <div class="container d-flex flex-column w-25">
+                     <!-- Input de numero de hijos -->
                     <label class="form-label text-white" for="assembler_childrenNumber">Numero de hijos</label>
                     <input type="text" class="form-input" id="assembler_childrenNumber"
                         v-model.number="assembler.childrenNumber" />
@@ -295,12 +338,14 @@
             </div>
             <br/>
             <div class="container w-100 d-flex justify-content-center">
+                <!-- Boton que llama una funcion para calcular la informacion diligenciada y mostrarla en una tabla-->
                 <input type="button" class="btn btn-success w-25 mt-4" value="Calcular" @click="getAssemblerLiquidation" />
             </div>
             <br/>
             </br>
         </div>
     </form>
+    <!-- Tabla para mostrar los resultados obtenidos del ensamblador -->
     <div class="container d-flex justify-content-center align-items-center h-100" v-if="render.liquidation" v-cloak>
         <table class="table table-dark table-hover table-bordered">
             <thead>
