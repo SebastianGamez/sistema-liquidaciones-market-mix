@@ -13,11 +13,9 @@
 </head>
 
 <body>
-    <main id="app" style="width: 100%;">
         <main id="app" style="width: 100%;">
             <!-- Login form -->
-            <section class="d-flex justify-content-center align-items-center w-100" style="height:100vh"
-                v-if="render.login">
+            <section class="d-flex justify-content-center align-items-center w-100" style="height:100vh" v-if="render.login" >
                 <div class="contenedor">
                     <form @submit.prevent="handleSubmit">
                         <input type="text" class="form-control input-ingresar mb-3" placeholder="PIN de Ingreso"
@@ -28,8 +26,7 @@
 
             </section>
             <!-- Administrator -->
-            <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh"
-                v-if="render.administrator">
+            <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh" v-if="render.administrator">
                 <nav class="navbar navbar-dark bg-dark w-100">
                     <div class="container-fluid">
                         <a class="navbar-brand">Bienvenido: Admin</a>
@@ -47,7 +44,7 @@
                                 <h3 class="text-white">Secretario</h2>
                                     <label class="form-label text-white" for="secretary_salary">Sueldo base:</label>
                                     <input type="text" class="form-input" id="secretary_salary"
-                                        v-model="globalVariables.secretary.salary" />
+                                        v-model.number="globalVariables.secretary.salary" />
                             </div>
                         </div>
                         <h3 class="text-white">Vendedor</h2>
@@ -55,31 +52,31 @@
                                 <div class="container d-flex flex-column w-25">
                                     <label class="form-label text-white" for="seller_salary">Sueldo base:</label>
                                     <input type="text" class="form-input" id="seller_salary"
-                                        v-model="globalVariables.seller.salary" />
+                                        v-model.number="globalVariables.seller.salary" />
                                 </div>
                                 <div class="container d-flex flex-column w-25">
                                     <label class="form-label text-white" for="seller_shoesprice">Precio por zapatos
                                         vendidos:</label>
                                     <input type="text" class="form-input" id="seller_shoesPrice"
-                                        v-model="globalVariables.seller.shoesPrice" />
+                                        v-model.number="globalVariables.seller.shoesPrice" />
                                 </div>
                                 <div class="container d-flex flex-column w-25">
                                     <label class="form-label text-white" for="seller_sneakersprice">Precio por
                                         zapatillas vendidas:</label>
                                     <input type="text" class="form-input" id="seller_sneakersPrice"
-                                        v-model="globalVariables.seller.sneakersPrice" />
+                                        v-model.number="globalVariables.seller.sneakersPrice" />
                                 </div>
                                 <div class="container d-flex flex-column w-25">
                                     <label class="form-label text-white" for="seller_shoescommission">Comisión de
                                         zapato</label>
                                     <input type="text" class="form-input" id="seller_shoescommission"
-                                        v-model="globalVariables.seller.shoesCommission" />
+                                        v-model.number="globalVariables.seller.shoesCommission" />
                                 </div>
                                 <div class="container d-flex flex-column w-25">
                                     <label class="form-label text-white" for="seller_sneakersommission">Comision de
                                         zapatilla</label>
                                     <input type="text" class="form-input" id="seller_sneakerscommission"
-                                        v-model="globalVariables.seller.sneakersCommission" />
+                                        v-model.number="globalVariables.seller.sneakersCommission" />
                                 </div>
                             </div>
                             <h3 class="text-white">Ensamblador</h2>
@@ -87,32 +84,32 @@
                                     <div class="container d-flex flex-column w-25">
                                         <label class="form-label text-white" for="assembler_salary">Sueldo base:</label>
                                         <input type="text" class="form-input" id="assembler_salary"
-                                            v-model="globalVariables.assembler.salary" />
+                                            v-model.number="globalVariables.assembler.salary" />
                                     </div>
                                     <div class="container d-flex flex-column w-25">
                                         <label class="form-label text-white" for="assembler_shoesassemblerprice">Precio
                                             de zapatos</label>
                                         <input type="text" class="form-input" id="assembler_shoesassemblerprice"
-                                            v-model="globalVariables.assembler.shoesAssemblerPrice" />
+                                            v-model.number="globalVariables.assembler.shoesAssemblerPrice" />
                                     </div>
                                     <div class="container d-flex flex-column w-25">
                                         <label class="form-label text-white"
                                             for="assembler-sneakersassemblerprice">Precio de zapatillas:</label>
                                         <input type="text" class="form-input" id="assembler-sneakersassemblerprice"
-                                            v-model="globalVariables.assembler.sneakersAssemblerPrice" />
+                                            v-model.number="globalVariables.assembler.sneakersAssemblerPrice" />
                                     </div>
                                     <div class="container d-flex flex-column w-25">
                                         <label class="form-label text-white"
                                             for="assembler_maxshoesassembledamount">Máximo de zapatos
                                             ensamblados</label>
                                         <input type="text" class="form-input" id="assembler_maxshoesassembledamount"
-                                            v-model="globalVariables.assembler.maxShoesAssembledAmount" />
+                                            v-model.number="globalVariables.assembler.maxShoesAssembledAmount" />
                                     </div>
                                     <div class="container d-flex flex-column w-25">
                                         <label class="form-label text-white" for="assembler_assembledamount">Máximo de
                                             zapatillas ensambladas</label>
                                         <input type="text" class="form-input" id="assembler_assembledamount"
-                                            v-model="globalVariables.assembler.maxSneakersAssembledAmount" />
+                                            v-model.number="globalVariables.assembler.maxSneakersAssembledAmount" />
                                     </div>
                                 </div>
                                 <br>
@@ -122,19 +119,14 @@
                         <button class="btn btn-danger w-25 mx-2" @click="clearFormAdministrator">Limpiar</button>
                     </div>
                     <div class="container p-2">
-                        <button class="btn btn-info" @click="">liquidacion</button>
+                        <button class="btn btn-info" @click="">Obtener reportes</button>
                     </div>
                     <br>
                 </form>
-
-
-
-        </main>
         </section>
         <!-- Secretario -->
 
-        <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh"
-            v-if="render.secretary">
+        <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh" v-if="render.secretary">
             <nav class="navbar navbar-dark bg-dark w-100">
                 <div class="container-fluid">
                     <a class="navbar-brand">Bienvenido: Secretario</a>
@@ -155,12 +147,12 @@
                                 <br />
                                 <label class="form-label text-white" for="secretary_extrahours">Horas extras:</label>
                                 <input type="text" class="form-input" id="secretary_extrahours"
-                                    v-model="secretary.extraHours" />
+                                    v-model.number="secretary.extraHours" />
                         </div>
                     </div>
                     <br>
                     <div class="container w-100 d-flex justify-content-center">
-                        <input class="btn btn-primary w-25 mx-2" type="" value="Calcular" />
+                        <input class="btn btn-primary w-25 mx-2" type="button" value="Calcular" @click="getSecretaryLiquidation" />
                     </div>
                     <br />
                     <div>
@@ -170,8 +162,7 @@
         </section>
         <!-- Vendedor -->
 
-        <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh"
-            v-if="render.seller">
+        <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh" v-if="render.seller">
             <nav class="navbar navbar-dark bg-dark w-100">
                 <div class="container-fluid">
                     <a class="navbar-brand">Bienvenido: Vendedor</a>
@@ -189,16 +180,16 @@
                     <div class="container">
                         <div class="container d-flex flex-column w-25">
                             <label class="form-label text-white" for="seller_shoes">Cantidad de zapatos </label>
-                            <input type="text" class="form-input" id="seller_shoes" v-model="seller.shoes" />
+                            <input type="text" class="form-input" id="seller_shoes" v-model.number="seller.shoes" />
                         </div>
                         <div class="container d-flex flex-column w-25">
                             <label class="form-label text-white" for="seller_sneakers">Cantidad de zapatillas</label>
-                            <input type="text" class="form-input" id="seller_sneakers" v-model="seller.sneakers" />
+                            <input type="text" class="form-input" id="seller_sneakers" v-model.number="seller.sneakers" />
                         </div>
                     </div>
                     <br>
                     <div class="container w-100 d-flex justify-content-center">
-                        <input class="btn btn-warning w-25 mx-2" type="" value="Calcular" />
+                        <input class="btn btn-warning w-25 mx-2" value="Calcular" @click="getSellerLiquidation" />
                     </div>
                     <br />
                     <div>
@@ -229,29 +220,29 @@
                         <br />
                         <label class="form-label text-white" for="assembler_extrahours">Horas extras:</label>
                         <input type="text" class="form-input" id="assembler_extrahours"
-                            v-model="assembler.extraHours" />
+                            v-model.number="assembler.extraHours" />
                 </div>
                 <div class="container d-flex flex-column w-25">
                     <label class="form-label text-white"
                         for="assembler_shoesassembled">Zapatos
                         ensamblados</label>
                     <input type="text" class="form-input" id="assembler_shoesassembled"
-                        v-model="assembler.shoesAssembled" />
+                        v-model.number="assembler.shoesAssembled" />
                 </div>
                 <div class="container d-flex flex-column w-25">
                     <label class="form-label text-white" for="assembler_sneakersassembled">zapatillas ensambladas</label>
                     <input type="text" class="form-input" id="assembler_sneakersassembled"
-                        v-model="assembler.sneakersAssembled" />
+                        v-model.number="assembler.sneakersAssembled" />
                 </div>
                 <div class="container d-flex flex-column w-25">
                     <label class="form-label text-white" for="assembler_childrenNumber">Numero de hijos</label>
                     <input type="text" class="form-input" id="assembler_childrenNumber"
-                        v-model="assembler.childrenNumber" />
+                        v-model.number="assembler.childrenNumber" />
                 </div>
             </div>
             <br/>
             <div class="container w-100 d-flex justify-content-center">
-                <input class="btn btn-secondary w-25 mx-2" type="" value="Calcular" />
+                <input type="button" class="btn btn-secondary w-25 mx-2" value="Calcular" @click="getAssemblerLiquidation" />
             </div>
             <br/>
         </br>
@@ -265,12 +256,16 @@
 <!--Data-->
 <script src="./src/data/credentialsData.js"></script>
 <script src="./src/data/globalsData.js"></script>
+<script src="./src/data/liquidationsData.js"></script>
 
 <!-- Vue.js -->
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <!-- Vue methods -->
 <script src="./src/methods/loginMethods.js"></script>
 <script src="./src/methods/administratorMethods.js"></script>
+<script src="./src/methods/secretaryMethods.js"></script>
+<script src="./src/methods/sellerMethods.js"></script>
+<script src="./src/methods/assemblerMethods.js"></script>
 <!--Vue app-->
 <script src="./src/main.js"></script>
 
