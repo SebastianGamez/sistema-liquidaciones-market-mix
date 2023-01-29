@@ -1,0 +1,19 @@
+{
+  "name": "sistema-liquidaciones-market-mix",
+  "version": "1.0.0",
+  "description": "Aplicación para calcular liquidaciones de los empleados de una empresa. Éste es un proyecto SPA (Single Page Application) desarrollado con VueJS que calcula los liquidaciones de empleados con distintos roles acorde a valores estipulados previamente por un administrador.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SebastianGamez/sistema-liquidaciones-market-mix.git"
+  },
+  "author": "Sebastián Gamez && Andres Torregrosa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SebastianGamez/sistema-liquidaciones-market-mix/issues"
+  },
+  "homepage": "https://github.com/SebastianGamez/sistema-liquidaciones-market-mix#readme"
+}

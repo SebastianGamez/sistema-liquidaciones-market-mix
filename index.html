@@ -17,8 +17,8 @@
 <body>
         <main id="app" style="width: 100%;">
             <!-- Login form -->
-            <!-- Seccion de ingreso-->
-            <!--Con la directiva v-if se renderiza la seccion que se requiere-->
+            <!-- Sección de ingreso-->
+            <!--Con la directiva v-if se renderizá la sección que se requiere-->
             <section class="d-flex justify-content-center align-items-center w-100" style="height:100vh" v-if="render.login" v-cloak >
                 <div class="contenedor">
                     <h1 class="text-white my-5"><b><i>Sistema de Liquidaciones</i></b></h1>
@@ -26,16 +26,16 @@
                           <!-- Input para diligenciar el pin de ingreso-->
                         <input type="text" class="form-control input-ingresar mb-3" placeholder="PIN de Ingreso"
                             id="pin" v-model="pin" />
-                            <!--Boton de enviar-->
+                            <!--Botón de enviar-->
                         <button type="submit" class="btn-ingresar">Send</button>
                     </form>
                 </div>
 
             </section>
             <!-- Administrator -->
-            <!-- Seccion de administrador-->
+            <!-- Sección de administrador-->
             <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh" v-if="render.administrator" v-cloak >
-                <!-- Navbar de bienvenida y cierre de sesion-->
+                <!-- Navbar de bienvenida y cierre de sesión-->
                 <nav class="navbar navbar-dark bg-dark w-100" v-cloak>
                     <div class="container-fluid">
                         <a class="navbar-brand">Bienvenido: Admin</a>
@@ -81,14 +81,14 @@
                                             v-model.number="globalVariables.seller.sneakersPrice" />
                                     </div>
                                     <div class="container d-flex flex-column">
-                                        <!--Input de comision por zapatos-->
+                                        <!--Input de comisión por zapatos-->
                                         <label class="form-label text-white" for="seller_shoescommission">Comisión de
                                             zapato:</label>
                                         <input type="text" class="form-input" id="seller_shoescommission"
                                             v-model.number="globalVariables.seller.shoesCommission" />
                                     </div>
                                     <div class="container d-flex flex-column">
-                                        <!--Input de comision por zapatillas-->
+                                        <!--Input de comisión por zapatillas-->
                                         <label class="form-label text-white" for="seller_sneakersommission">Comisión de
                                             zapatilla:</label>
                                         <input type="text" class="form-input" id="seller_sneakerscommission"
@@ -119,7 +119,7 @@
                                             v-model.number="globalVariables.assembler.sneakersAssemblerPrice" />
                                     </div>
                                     <div class="container d-flex flex-column">
-                                        <!--Input maximo de zapatos ensamblados-->
+                                        <!--Input máximo de zapatos ensamblados-->
                                         <label class="form-label text-white"
                                             for="assembler_maxshoesassembledamount">Máximo de zapatos
                                             ensamblados:</label>
@@ -127,7 +127,7 @@
                                             v-model.number="globalVariables.assembler.maxShoesAssembledAmount" />
                                     </div>
                                     <div class="container d-flex flex-column">
-                                         <!--Input maximo de zapatillas ensambladas-->
+                                         <!--Input máximo de zapatillas ensambladas-->
                                         <label class="form-label text-white" for="assembler_assembledamount">Máximo de
                                             zapatillas ensambladas:</label>
                                         <input type="text" class="form-input" id="assembler_assembledamount"
@@ -138,17 +138,17 @@
                             <br>
                         </form>
                         <div class="container w-100 d-flex justify-content-center p-5" >
-                            <!--Boton de enviar la informacion registrada desde el administrador-->
+                            <!--Botón de enviar la información registrada desde el administrador-->
                             <button class="btn btn-success w-25 mx-2" value="Send" @click="handleSubmitAdministrator">Enviar</button>
-                            <!--Boton para limpiar el formulario a la hora de enviar-->
+                            <!--Botón para limpiar el formulario a la hora de enviar-->
                             <button class="btn btn-danger w-25 mx-2" @click="clearFormAdministrator">Limpiar</button>
-                            <!--Boton para visualizar los reportes de liquidacion de todos los cargos-->
+                            <!--Botón para visualizar los reportes de liquidación de todos los cargos-->
                             <button class="btn btn-info w-25 mx-2" @click="getLiquidations">Obtener reportes</button>
                         </div>
                     </div>
                 <div class="container p-2">
                 </div>
-                <!--Tabla para mostrar la liquidacion de todos los cargos-->
+                <!--Tabla para mostrar la liquidación de todos los cargos-->
                 <div class="container h-100 d-flex justify-content-center align-items-center" v-if="render.liquidation" v-cloak>
                     <table class="table table-dark table-hover table-bordered">
                         <thead>
@@ -158,7 +158,7 @@
                             <th>Liquidación</th>
                         </thead>
                         <tbody>
-                            <!--recorrer el arreglo y mostrar informacion correspondiente de cada cargo-->
+                            <!--Recorrer el arreglo y mostrar información correspondiente de cada cargo-->
                             <tr v-for="(liquidation) in liquidations">
                                 <td>{{liquidation.pin}}</td>
                                 <td>{{liquidation.name}}</td>
@@ -170,11 +170,11 @@
 
         </section>
         <!-- Secretario -->
-        <!-- Seccion de perfil secretario -->
+        <!-- Sección de perfil secretario -->
         <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh" v-if="render.secretary" v-cloak>
             <nav class="navbar navbar-dark bg-dark w-100">
                 <div class="container-fluid">
-                    <!-- Navbar de bienvenida y cierre de sesion -->
+                    <!-- Navbar de bienvenida y cierre de sesión -->
                     <a class="navbar-brand">Bienvenido: Secretario</a>
                     <form class="d-flex" role="search">
                         <button class="btn btn-info" @click="handleLogout">Salir</button>
@@ -188,7 +188,7 @@
                     <div class="container d-flex flex-column">
                         <div class="container">
                             <div class="container d-flex flex-column w-25">
-                                <!-- Informacion a diligenciar en el rol secretario -->
+                                <!-- Información a diligenciar en el rol secretario -->
                                 <h3 class="text-white">Secretario</h3>
                                     <br />
                                     <!-- input de las horas extras -->
@@ -199,7 +199,7 @@
                         </div>
                         <br>
                         <div class="container w-100 d-flex justify-content-center">
-                            <!-- Boton de calcular, que al dar click te miuestra una tabla de los resultados obtenidos-->
+                            <!-- Botón de calcular, que al dar click te muestra una tabla de los resultados obtenidos-->
                             <input class="btn btn-success w-25 mt-4" type="button" value="Calcular" @click="getSecretaryLiquidation" />
                         </div>
                         <br />
@@ -223,9 +223,9 @@
             </div>
         </section>
         <!-- Vendedor -->
-         <!-- Seccion de perfil vendedor -->
+         <!-- Sección de perfil vendedor -->
         <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh" v-if="render.seller" v-cloak>
-             <!-- Navbar de bienvenido y cierre de sesion -->
+             <!-- Navbar de bienvenido y cierre de sesión -->
             <nav class="navbar navbar-dark bg-dark w-100">
                 <div class="container-fluid">
                     <a class="navbar-brand">Bienvenido: Vendedor</a>
@@ -241,7 +241,7 @@
                 class="d-flex flex-column justify-content-center align-items-center container w-50 p-2"
                 v-if="!render.liquidation" v-cloak>
                     <div class="container d-flex flex-column justify-content-center align-items-center border rounded w-100">
-                         <!-- Informacion a diligenciar en el rol vendedor -->
+                         <!-- Información a diligenciar en el rol vendedor -->
                         <h2 class="text-white">Vendedor</h2>
                         <div class="container">
                             <div class="container d-flex flex-column">
@@ -257,7 +257,7 @@
                         </div>
                         <br>
                         <div class="container w-100 d-flex justify-content-center">
-                            <!-- Boton para calcular, al dar click se mostrara en una tabla el resultado obtenido-->
+                            <!-- Botón para calcular, al dar click se mostrara en una tabla el resultado obtenido-->
                             <input class="btn btn-success w-50 my-4" value="Calcular" @click="getSellerLiquidation" />
                         </div>
                         <br />
@@ -267,7 +267,7 @@
                     <img src="https://proexpansion.com/uploads/article/image/1431/larger_camper.jpg" width="380" alt="" class="rounded">
                 </div>
             </div>
-             <!-- Tabla para mostrar la informacion obtenida-->
+             <!-- Tabla para mostrar la información obtenida-->
             <div class="container d-flex justify-content-center align-items-center h-100" v-if="render.liquidation" v-cloak>
                 <table class="table table-dark table-hover table-bordered">
                     <thead>
@@ -288,10 +288,10 @@
             </div>
         </section>
          <!-- Ensamblador -->
-         <!-- Seccion de perfil ensamblador-->
+         <!-- Sección de perfil ensamblador-->
          <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh"
          v-if="render.assembler" v-cloak>
-         <!-- creacion de un navbar de bienvenida y cierre de sesion-->
+         <!-- Creación de un navbar de bienvenida y cierre de sesión-->
          <nav class="navbar navbar-dark bg-dark w-100">
             <div class="container-fluid">
                 <a class="navbar-brand">Bienvenido: Ensamblador</a>
@@ -307,7 +307,7 @@
         <div class="container d-flex flex-column border rounded p-5">
             <div class="container">
                 <div class="container d-flex flex-column w-25">
-                    <!-- Informacion a diligenciar en el rol ensamblador -->
+                    <!-- Información a diligenciar en el rol ensamblador -->
                     <h3 class="text-white">Ensamblador</h2>
                         <br />
                         <!-- Input horas extras -->
@@ -338,7 +338,7 @@
             </div>
             <br/>
             <div class="container w-100 d-flex justify-content-center">
-                <!-- Boton que llama una funcion para calcular la informacion diligenciada y mostrarla en una tabla-->
+                <!-- Botón que llama una función para calcular la información diligenciada y mostrarla en una tabla-->
                 <input type="button" class="btn btn-success w-25 mt-4" value="Calcular" @click="getAssemblerLiquidation" />
             </div>
             <br/>

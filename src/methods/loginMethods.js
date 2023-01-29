@@ -40,7 +40,7 @@ const loginMethods = {
                 // Elimina el pin ingresado
                 this.pin = '';
                 // Enviar alerta con swal
-                swal('Bienvenido', `Hola Admin, has iniciado sesión como administrator`, 'success');
+                swal('Bienvenido', `Hola Admin, has iniciado sesión como Administrador`, 'success');
                 // Se rompe el ciclo
                 break;
             }
@@ -67,7 +67,7 @@ const loginMethods = {
                         // Elimina el pin ingresado
                         this.pin = '';
                         // Enviar alerta con swal
-                        swal('Bienvenido', `Hola ${assembler}, has iniciado sesión como assembler`, 'success');
+                        swal('Bienvenido', `Hola ${assembler}, has iniciado sesión como Ensamblador`, 'success');
                         // Se rompe el ciclo
                         break;
                     }
@@ -96,7 +96,7 @@ const loginMethods = {
                         // Elimina el pin ingresado
                         this.pin = '';
                         // Enviar alerta con swal
-                        swal('Bienvenido', `Hola ${secretary}, has iniciado sesión como secretary`, 'success');
+                        swal('Bienvenido', `Hola ${secretary}, has iniciado sesión como Secretario`, 'success');
                         // Se rompe el ciclo
                         break;
                     }
@@ -125,7 +125,7 @@ const loginMethods = {
                         // Elimina el pin ingresado
                         this.pin = '';
                         // Enviar alerta con swal
-                        swal('Bienvenido', `Hola ${seller}, has iniciado sesión como seller`, 'success');
+                        swal('Bienvenido', `Hola ${seller}, has iniciado sesión como vendedor`, 'success');
                         // Se rompe el ciclo
                         break;
                     }

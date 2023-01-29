@@ -7,7 +7,7 @@
  **El proyecto consta de cinco interfaces:**
  ### - Login:
  
-  En ésta interfaz el usuario ingresa un pin único de cuatro digitos que lo relaciona con un rol y su nombre. El pin se valida con la información almacenada en el objeto ./src/data/credentials.js, sí es correcto, se renderiza una interfaz para su rol (administrator, secretary, seller or assembler). 
+  En ésta interfaz el usuario ingresa un pin único de cuatro dígitos que lo relaciona con un rol y su nombre. El pin se valida con la información almacenada en el objeto ./src/data/credentials.js, sí es correcto, se renderiza una interfaz para su rol (administrator, secretary, seller or assembler). 
   
   Aquí encontrará algunos pines para el acceso al login:
  
@@ -32,12 +32,12 @@
 ```
 ### - Administrator:
 
-Tras ingresar el pin de acceso asignado para el admistridor, se renderizará la interfaz gráfica para que el administrados asigne las variables globales para el cálculo de la liquidaciones y visualize un reporte géneral las liquidaciones realizadas hasta el momento. 
+Tras ingresar el pin de acceso asignado para el administrador, se renderizará la interfaz gráfica para que el administrados asigne las variables globales para el cálculo de la liquidaciones y visualize un reporte géneral las liquidaciones realizadas hasta el momento. 
 
 
-Si el administrador no ha asignado las variables globales, **NO SE DARA ACCESO A LAS OTRAS INTERFACES AUNQUE EL LOGIN PUEDA SER CORRECTO**. Estás variables se almacenarán en el objeto ubicado en ./src/data/globalVariables.js.
+Si el administrador no ha asignado las variables globales, **NO SE DARÁ ACCESO A LAS OTRAS INTERFACES AUNQUE EL LOGIN PUEDA SER CORRECTO**. Estás variables se almacenarán en el objeto ubicado en ./src/data/globalVariables.js.
 
-Por otro lado, la información que visualizará el administrador se obtendŕa del arreglo en la ruta ./src/data/liquidationsData.js, donde posterior a cada liquidación realizada se almacenará ésta última.
+Por otro lado, la información que visualizará el administrador se obtendrá del arreglo en la ruta ./src/data/liquidationsData.js, donde posterior a cada liquidación realizada se almacenará ésta última.
 
 
 ### - Secretary, seller y assembler
@@ -54,7 +54,7 @@ En éstas interfaces el comportamiento es análogo entre sí. Se recibirán vari
     * style.css (Generalidades de los estilos).
 * src (Contiene la lógica del programa).
     * main.js (Lógica del programa en VueJS).
-    * methods (Métodos que interactuan con los eventos del cliente)
+    * methods (Métodos que interactúan con los eventos del cliente)
         * loginMethods.js (Métodos implementados para el login).
         * administratorMethods.js (Métodos implementados en la interfaz del administrador).
         * secretaryMethods.js (Métodos implementados en la interfaz del secretario).

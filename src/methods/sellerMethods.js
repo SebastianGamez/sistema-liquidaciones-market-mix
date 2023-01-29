@@ -40,7 +40,7 @@ const sellerMethods = {
         // Se calcula el valor total de las ventas
         const totalSales = (shoes * shoesPrice) + (sneakers * sneakersPrice);
         // Se obtiene el porcentaje de comisión
-        let bonus;
+        let bonus = 0;
         // Se calcula el porcentaje de comisión
         if(totalSales > 10000000){
             bonus = 20;

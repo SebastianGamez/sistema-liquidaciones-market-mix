@@ -84,7 +84,7 @@ const assemblerMethods = {
         // Se obtiene el número de hijos
         const childrenNumber = this.assembler.childrenNumber;
         // Se definer el subsidio por tener hijos
-        let subsidy;
+        let subsidy = 0;
         if(childrenNumber === 1){
             subsidy = 80000;
         }
