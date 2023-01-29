@@ -7,16 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <!--Icon-->
+    <link rel="icon" href="./assets/logo.ico">
+    <title>Sistema de Liquidaciones - MarketMix</title>
 </head>
 
 <body>
         <main id="app" style="width: 100%;">
             <!-- Login form -->
-            <section class="d-flex justify-content-center align-items-center w-100" style="height:100vh" v-if="render.login" >
+            <section class="d-flex justify-content-center align-items-center w-100" style="height:100vh" v-if="render.login" v-cloak >
                 <div class="contenedor">
+                    <h1 class="text-white my-5"><b><i>Sistema de Liquidaciones</i></b></h1>
                     <form @submit.prevent="handleSubmit">
                         <input type="text" class="form-control input-ingresar mb-3" placeholder="PIN de Ingreso"
                             id="pin" v-model="pin" />
@@ -26,8 +29,8 @@
 
             </section>
             <!-- Administrator -->
-            <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh" v-if="render.administrator">
-                <nav class="navbar navbar-dark bg-dark w-100">
+            <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh" v-if="render.administrator" v-cloak >
+                <nav class="navbar navbar-dark bg-dark w-100" v-cloak>
                     <div class="container-fluid">
                         <a class="navbar-brand">Bienvenido: Admin</a>
                         <form class="d-flex" role="search">
@@ -35,98 +38,115 @@
                         </form>
                     </div>
                 </nav>
-                <form class="d-flex flex-column justify-content-between align-items-center"
-                    @submit.prevent="handleSubmitAdministrator">
-                    <h2 class="text-white">Variables globales</h2>
-                    <div class="container d-flex flex-column">
-                        <div class="container">
-                            <div class="container d-flex flex-column w-25">
-                                <h3 class="text-white">Secretario</h2>
-                                    <label class="form-label text-white" for="secretary_salary">Sueldo base:</label>
-                                    <input type="text" class="form-input" id="secretary_salary"
-                                        v-model.number="globalVariables.secretary.salary" />
-                            </div>
-                        </div>
-                        <h3 class="text-white">Vendedor</h2>
-                            <div class="container d-flex flex-row flex-wrap w-100">
+                    <div class="container w-100 h-100 d-flex flex-column justify-content-center align-items-center" v-if="!render.liquidation" v-cloak>
+                        <form class="d-flex flex-column justify-content-between align-items-center h-75">
+                            <h1 class="text-white my-3">Variables globales</h1>
+                            <div class="container d-flex flex-row">
+
                                 <div class="container d-flex flex-column w-25">
-                                    <label class="form-label text-white" for="seller_salary">Sueldo base:</label>
-                                    <input type="text" class="form-input" id="seller_salary"
-                                        v-model.number="globalVariables.seller.salary" />
+                                    <h3 class="text-white">Secretario</h3>
+                                        <label class="form-label text-white" for="secretary_salary">Sueldo base:</label>
+                                        <input type="text" class="form-input" id="secretary_salary"
+                                            v-model.number="globalVariables.secretary.salary" />
                                 </div>
-                                <div class="container d-flex flex-column w-25">
-                                    <label class="form-label text-white" for="seller_shoesprice">Precio por zapatos
-                                        vendidos:</label>
-                                    <input type="text" class="form-input" id="seller_shoesPrice"
-                                        v-model.number="globalVariables.seller.shoesPrice" />
+                                <div class="container">
+                                    <h3 class="text-white">Vendedor</h3>
+                                    <div class="container d-flex flex-column">
+                                        <label class="form-label text-white" for="seller_salary">Sueldo base:</label>
+                                        <input type="text" class="form-input" id="seller_salary"
+                                            v-model.number="globalVariables.seller.salary" />
+                                    </div>
+                                    <div class="container d-flex flex-column">
+                                        <label class="form-label text-white" for="seller_shoesprice">Precio por zapatos
+                                            vendidos:</label>
+                                        <input type="text" class="form-input" id="seller_shoesPrice"
+                                            v-model.number="globalVariables.seller.shoesPrice" />
+                                    </div>
+                                    <div class="container d-flex flex-column">
+                                        <label class="form-label text-white" for="seller_sneakersprice">Precio por
+                                            zapatillas vendidas:</label>
+                                        <input type="text" class="form-input" id="seller_sneakersPrice"
+                                            v-model.number="globalVariables.seller.sneakersPrice" />
+                                    </div>
+                                    <div class="container d-flex flex-column">
+                                        <label class="form-label text-white" for="seller_shoescommission">Comisión de
+                                            zapato:</label>
+                                        <input type="text" class="form-input" id="seller_shoescommission"
+                                            v-model.number="globalVariables.seller.shoesCommission" />
+                                    </div>
+                                    <div class="container d-flex flex-column">
+                                        <label class="form-label text-white" for="seller_sneakersommission">Comisión de
+                                            zapatilla:</label>
+                                        <input type="text" class="form-input" id="seller_sneakerscommission"
+                                            v-model.number="globalVariables.seller.sneakersCommission" />
+                                    </div>
                                 </div>
-                                <div class="container d-flex flex-column w-25">
-                                    <label class="form-label text-white" for="seller_sneakersprice">Precio por
-                                        zapatillas vendidas:</label>
-                                    <input type="text" class="form-input" id="seller_sneakersPrice"
-                                        v-model.number="globalVariables.seller.sneakersPrice" />
-                                </div>
-                                <div class="container d-flex flex-column w-25">
-                                    <label class="form-label text-white" for="seller_shoescommission">Comisión de
-                                        zapato</label>
-                                    <input type="text" class="form-input" id="seller_shoescommission"
-                                        v-model.number="globalVariables.seller.shoesCommission" />
-                                </div>
-                                <div class="container d-flex flex-column w-25">
-                                    <label class="form-label text-white" for="seller_sneakersommission">Comision de
-                                        zapatilla</label>
-                                    <input type="text" class="form-input" id="seller_sneakerscommission"
-                                        v-model.number="globalVariables.seller.sneakersCommission" />
-                                </div>
-                            </div>
-                            <h3 class="text-white">Ensamblador</h2>
-                                <div class="container d-flex flex-row flex-wrap w-100">
-                                    <div class="container d-flex flex-column w-25">
+                                <div class="container">
+                                    <h3 class="text-white">Ensamblador</h3>
+                                    <div class="container d-flex flex-column">
                                         <label class="form-label text-white" for="assembler_salary">Sueldo base:</label>
                                         <input type="text" class="form-input" id="assembler_salary"
                                             v-model.number="globalVariables.assembler.salary" />
                                     </div>
-                                    <div class="container d-flex flex-column w-25">
+                                    <div class="container d-flex flex-column">
                                         <label class="form-label text-white" for="assembler_shoesassemblerprice">Precio
-                                            de zapatos</label>
+                                            de zapatos:</label>
                                         <input type="text" class="form-input" id="assembler_shoesassemblerprice"
                                             v-model.number="globalVariables.assembler.shoesAssemblerPrice" />
                                     </div>
-                                    <div class="container d-flex flex-column w-25">
+                                    <div class="container d-flex flex-column">
                                         <label class="form-label text-white"
                                             for="assembler-sneakersassemblerprice">Precio de zapatillas:</label>
                                         <input type="text" class="form-input" id="assembler-sneakersassemblerprice"
                                             v-model.number="globalVariables.assembler.sneakersAssemblerPrice" />
                                     </div>
-                                    <div class="container d-flex flex-column w-25">
+                                    <div class="container d-flex flex-column">
                                         <label class="form-label text-white"
                                             for="assembler_maxshoesassembledamount">Máximo de zapatos
-                                            ensamblados</label>
+                                            ensamblados:</label>
                                         <input type="text" class="form-input" id="assembler_maxshoesassembledamount"
                                             v-model.number="globalVariables.assembler.maxShoesAssembledAmount" />
                                     </div>
-                                    <div class="container d-flex flex-column w-25">
+                                    <div class="container d-flex flex-column">
                                         <label class="form-label text-white" for="assembler_assembledamount">Máximo de
-                                            zapatillas ensambladas</label>
+                                            zapatillas ensambladas:</label>
                                         <input type="text" class="form-input" id="assembler_assembledamount"
                                             v-model.number="globalVariables.assembler.maxSneakersAssembledAmount" />
                                     </div>
                                 </div>
-                                <br>
+                            </div>
+                            <br>
+                        </form>
+                        <div class="container w-100 d-flex justify-content-center p-5" >
+                            <button class="btn btn-success w-25 mx-2" value="Send" @click="handleSubmitAdministrator">Enviar</button>
+                            <button class="btn btn-danger w-25 mx-2" @click="clearFormAdministrator">Limpiar</button>
+                            <button class="btn btn-info w-25 mx-2" @click="getLiquidations">Obtener reportes</button>
+                        </div>
                     </div>
-                    <div class="container w-100 d-flex justify-content-center">
-                        <input class="btn btn-primary w-25 mx-2" type="submit" value="Send" />
-                        <button class="btn btn-danger w-25 mx-2" @click="clearFormAdministrator">Limpiar</button>
-                    </div>
-                    <div class="container p-2">
-                        <button class="btn btn-info" @click="">Obtener reportes</button>
-                    </div>
-                    <br>
-                </form>
+                <div class="container p-2">
+                </div>
+                <div class="container h-100 d-flex justify-content-center align-items-center" v-if="render.liquidation" v-cloak>
+                    <table class="table table-dark table-hover table-bordered">
+                        <thead>
+                            <th>Pin</th>
+                            <th>Nombre</th>
+                            <th>Rol</th>
+                            <th>Liquidación</th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(liquidation) in liquidations">
+                                <td>{{liquidation.pin}}</td>
+                                <td>{{liquidation.name}}</td>
+                                <td>{{liquidation.role}}</td>
+                                <td>${{liquidation.liquidation}}</td>
+                            </tr>
+                    </table>
+                </div>
+
         </section>
         <!-- Secretario -->
 
-        <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh" v-if="render.secretary">
+        <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh" v-if="render.secretary" v-cloak>
             <nav class="navbar navbar-dark bg-dark w-100">
                 <div class="container-fluid">
                     <a class="navbar-brand">Bienvenido: Secretario</a>
@@ -136,33 +156,45 @@
                 </div>
             </nav>
             <br />
-
-            <form
-                class="d-flex flex-column justify-content-between align-items-center container border rounded w-75 p-5">
-                <h2 class="text-white">Calcular horas extras</h2>
-                <div class="container d-flex flex-column">
-                    <div class="container">
-                        <div class="container d-flex flex-column w-25">
-                            <h3 class="text-white">Secretario</h2>
-                                <br />
-                                <label class="form-label text-white" for="secretary_extrahours">Horas extras:</label>
-                                <input type="text" class="form-input" id="secretary_extrahours"
-                                    v-model.number="secretary.extraHours" />
+            <div class="container d-flex justify-content-center align-items-center w-100 h-100">
+                <form
+                    class="d-flex flex-column justify-content-between align-items-center container border rounded w-75 p-3 mx-2" v-if="!render.liquidation" v-cloak>
+                    <div class="container d-flex flex-column">
+                        <div class="container">
+                            <div class="container d-flex flex-column w-25">
+                                <h3 class="text-white">Secretario</h3>
+                                    <br />
+                                    <label class="form-label text-white" for="secretary_extrahours">Horas extras:</label>
+                                    <input type="text" class="form-input" id="secretary_extrahours"
+                                        v-model.number="secretary.extraHours" />
+                            </div>
                         </div>
+                        <br>
+                        <div class="container w-100 d-flex justify-content-center">
+                            <input class="btn btn-success w-25 mt-4" type="button" value="Calcular" @click="getSecretaryLiquidation" />
+                        </div>
+                        <br />
                     </div>
-                    <br>
-                    <div class="container w-100 d-flex justify-content-center">
-                        <input class="btn btn-primary w-25 mx-2" type="button" value="Calcular" @click="getSecretaryLiquidation" />
-                    </div>
-                    <br />
-                    <div>
-                        <img src="https://uploadgerencie.com/imagenes/calculo-horas-extras.png" width="580" height="200"
-                            alt="">
-            </form>
+                </form>
+                <img src="https://uploadgerencie.com/imagenes/calculo-horas-extras.png" width="380" class="rounded mx-2">
+            </div>
+            <div class="container d-flex justify-content-center align-items-center h-100" v-if="render.liquidation" v-cloak>
+                <table class="table table-dark table-hover table-bordered">
+                    <thead>
+                        <th>Horas extras</th>
+                        <th>Total</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>${{reports.secretary.extraHours}}</td>
+                            <td>$<b>{{reports.secretary.total}}</b></td>
+                        </tr>
+                </table>
+            </div>
         </section>
         <!-- Vendedor -->
 
-        <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh" v-if="render.seller">
+        <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh" v-if="render.seller" v-cloak>
             <nav class="navbar navbar-dark bg-dark w-100">
                 <div class="container-fluid">
                     <a class="navbar-brand">Bienvenido: Vendedor</a>
@@ -173,34 +205,55 @@
             </nav>
             <br />
 
-            <form
-                class="d-flex flex-column justify-content-between align-items-center container border rounded w-75 p-5">
-                <h2 class="text-white">Vendedor</h2>
-                <div class="container d-flex flex-column">
-                    <div class="container">
-                        <div class="container d-flex flex-column w-25">
-                            <label class="form-label text-white" for="seller_shoes">Cantidad de zapatos </label>
-                            <input type="text" class="form-input" id="seller_shoes" v-model.number="seller.shoes" />
+            <div class="container d-flex justify-content-center align-items-center w-100 h-100">
+                <form
+                class="d-flex flex-column justify-content-center align-items-center container w-50 p-2"
+                v-if="!render.liquidation" v-cloak>
+                    <div class="container d-flex flex-column justify-content-center align-items-center border rounded w-100">
+                        <h2 class="text-white">Vendedor</h2>
+                        <div class="container">
+                            <div class="container d-flex flex-column">
+                                <label class="form-label text-white" for="seller_shoes">Cantidad de zapatos </label>
+                                <input type="text" class="form-input" id="seller_shoes" v-model.number="seller.shoes" />
+                            </div>
+                            <div class="container d-flex flex-column">
+                                <label class="form-label text-white" for="seller_sneakers">Cantidad de zapatillas</label>
+                                <input type="text" class="form-input" id="seller_sneakers" v-model.number="seller.sneakers" />
+                            </div>
                         </div>
-                        <div class="container d-flex flex-column w-25">
-                            <label class="form-label text-white" for="seller_sneakers">Cantidad de zapatillas</label>
-                            <input type="text" class="form-input" id="seller_sneakers" v-model.number="seller.sneakers" />
+                        <br>
+                        <div class="container w-100 d-flex justify-content-center">
+                            <input class="btn btn-success w-50 my-4" value="Calcular" @click="getSellerLiquidation" />
                         </div>
+                        <br />
                     </div>
-                    <br>
-                    <div class="container w-100 d-flex justify-content-center">
-                        <input class="btn btn-warning w-25 mx-2" value="Calcular" @click="getSellerLiquidation" />
-                    </div>
-                    <br />
-                    <div>
-                        <img src="https://proexpansion.com/uploads/article/image/1431/larger_camper.jpg" width="580"
-                            height="200" alt="">
-                        <div>
-            </form>
+                </form>
+                <div class="container">
+                    <img src="https://proexpansion.com/uploads/article/image/1431/larger_camper.jpg" width="380" alt="" class="rounded">
+                </div>
+            </div>
+            <div class="container d-flex justify-content-center align-items-center h-100" v-if="render.liquidation" v-cloak>
+                <table class="table table-dark table-hover table-bordered">
+                    <thead>
+                        <th>Bonificación</th>
+                        <th>Comisión</th>
+                        <th>S. Transporte</th>
+                        <th>Total</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{reports.seller.bonus}}%</td>
+                            <td>${{reports.seller.commission}}</td>
+                            <td>${{reports.seller.transportSubsidy}}</td>
+                            <td><b>${{reports.seller.total}}</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
          <!-- Ensamblador -->
          <section class="d-flex flex-column justify-content-center align-items-center w-100" style="height:100vh"
-         v-if="render.assembler">
+         v-if="render.assembler" v-cloak>
          <nav class="navbar navbar-dark bg-dark w-100">
             <div class="container-fluid">
                 <a class="navbar-brand">Bienvenido: Ensamblador</a>
@@ -212,8 +265,8 @@
         <br/>
         <br/>
         <br/>
-        <form class="d-flex flex-column justify-content-between container border rounded w-70 p-5">
-        <div class="container d-flex flex-column">
+        <form class="d-flex flex-column justify-content-center container w-70 h-100" v-if="!render.liquidation" v-cloak>
+        <div class="container d-flex flex-column border rounded p-5">
             <div class="container">
                 <div class="container d-flex flex-column w-25">
                     <h3 class="text-white">Ensamblador</h2>
@@ -242,12 +295,34 @@
             </div>
             <br/>
             <div class="container w-100 d-flex justify-content-center">
-                <input type="button" class="btn btn-secondary w-25 mx-2" value="Calcular" @click="getAssemblerLiquidation" />
+                <input type="button" class="btn btn-success w-25 mt-4" value="Calcular" @click="getAssemblerLiquidation" />
             </div>
             <br/>
-        </br>
-
+            </br>
+        </div>
     </form>
+    <div class="container d-flex justify-content-center align-items-center h-100" v-if="render.liquidation" v-cloak>
+        <table class="table table-dark table-hover table-bordered">
+            <thead>
+                <th>S. Familiar</th>
+                <th>H. Extras</th>
+                <th>B. Zapatos</th>
+                <th>B. Zapatillas</th>
+                <th>S. Transporte</th>
+                <th>Total</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>${{reports.assembler.childrenSubsidy}}</td>
+                    <td>${{reports.assembler.extraHours}}</td>
+                    <td>${{reports.assembler.shoesBonus}}</td>
+                    <td>${{reports.assembler.sneakersBonus}}</td>
+                    <td>${{reports.assembler.transportSubsidy}}</td>
+                    <td><b>${{reports.assembler.total}}</b></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     </main>
 </body>
 <!--SweetAlert-->

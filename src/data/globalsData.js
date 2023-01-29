@@ -9,7 +9,8 @@ let globalsData = {
         salary: undefined,
         shoesPrice: undefined,
         sneakersPrice: undefined,
-        commission: undefined
+        shoesCommission: undefined,
+        sneakersCommission:undefined
     },
     assembler:{
         salary: undefined,

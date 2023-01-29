@@ -3,7 +3,7 @@
 
 const administratorMethods = {
     // Este método se encarga de validar que todos los campos estén llenos
-    checkFieldsValues() {
+    checkFieldsValuesAdministrator() {
         // Se obtienen los valores de las variables globales
         const globalVariablesValues = Object.values(this.globalVariables);
         // Se asume que todos los campos están llenos
@@ -16,6 +16,11 @@ const administratorMethods = {
                 if (value === '') {
                     // Se muestra un mensaje de error
                     swal('Error', 'Todos los campos deben estar llenos', 'error');
+                    // Se cambia el valor de allFieldsAreFilled a false
+                    allFieldsAreFilled = false;
+                } else if (isNaN(value)) {
+                    // Se muestra un mensaje de error
+                    swal('Error', 'Todos los campos deben ser numéricos', 'error');
                     // Se cambia el valor de allFieldsAreFilled a false
                     allFieldsAreFilled = false;
                 }
@@ -50,7 +55,7 @@ const administratorMethods = {
     // Este método se encarga de actualizar las variables globales
     handleSubmitAdministrator() {
         // Si todos los campos están llenos, se procede a actualizar las variables globales
-        if (this.checkFieldsValues()) {
+        if (this.checkFieldsValuesAdministrator()) {
             // Se almacenan las variables globales
             globalsData = this.globalVariables;
             // Se muestra un mensaje de éxito
@@ -67,9 +72,8 @@ const administratorMethods = {
         if(liquidationsData.length > 0){
             // Se muestra un mensaje de éxito
             swal("¡Éxito!", "Se han obtenido las liquidaciones", "success");
-            // se muestran las liquidaciones y se ocultan los botones
-            this.render.liquidations = true;
-            this.render.liquidationButtons = false;
+            // se muestran las liquidaciones y se oculta el formulario
+            this.render.liquidation = true;
         } else{
             // Se muestra un mensaje de error
             swal("¡Error!", "No hay liquidaciones", "error");

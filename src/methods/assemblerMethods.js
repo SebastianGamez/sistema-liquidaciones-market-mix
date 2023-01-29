@@ -2,6 +2,31 @@
 // Autor: Sebastián Gámez Ariza
 
 const assemblerMethods = {
+    // Verificar si todos los campos están llenos y son números
+    checkFieldsValuesAssembler() {
+        // Se obtienen los valores de las variables globales
+        const assemblerValues = Object.values(this.assembler);
+        // Se asume que todos los campos están llenos
+        let allFieldsAreFilled = true;
+        // Se recorren los valores del ensamblador
+        assemblerValues.map( assemblerValue => {
+            // Si el valor está vacío, se muestra un mensaje de error y se cambia el valor de allFieldsAreFilled a false
+            if (assemblerValue === '') {
+                // Se muestra un mensaje de error
+                swal('Error', 'Todos los campos deben estar llenos', 'error');
+                // Se cambia el valor de allFieldsAreFilled a false
+                allFieldsAreFilled = false;
+            }
+            else if (isNaN(assemblerValue)) {
+                // Se muestra un mensaje de error
+                swal('Error', 'Todos los campos deben ser números', 'error');
+                // Se cambia el valor de allFieldsAreFilled a false
+                allFieldsAreFilled = false;
+            }
+        });
+        // Se retorna el valor de allFieldsAreFilled
+        return allFieldsAreFilled;
+    },
     // Método para calcular el valor de la hora del ensamblador
     calculateAssemblerHourValue() {
         // Se obtiene el salario del ensamblador
@@ -27,7 +52,7 @@ const assemblerMethods = {
         // Se obtiene el precio de ensamblar un zapato
         const shoesAssemblerPrice = globalsData.assembler.shoesAssemblerPrice;
         // se definer el bonus por ensamblar zapatos
-        let bonus;
+        let bonus = 0;
         if(shoesAssembled > 1000){
             bonus = (shoesAssemblerPrice * 0.1) * shoesAssembled;
         }
@@ -44,7 +69,7 @@ const assemblerMethods = {
         // Se obtiene el precio de ensamblar una zapatilla
         const sneakersAssemblerPrice = globalsData.assembler.sneakersAssemblerPrice;
         // Se definer el bonus por ensamblar zapatillas
-        let bonus;
+        let bonus = 0;
         if(sneakersAssembled > 1700){
             bonus = (sneakersAssemblerPrice * 0.15) * sneakersAssembled;
         }
@@ -104,25 +129,29 @@ const assemblerMethods = {
     },
     // Mostrar la liquidación del ensamblador
     getAssemblerLiquidation() {
-        if(this.validateMaxAssemblers()) {
-            // Se obtiene la liquidación del secretario
-            this.reports.assembler.total = this.calculateAssemblerLiquidation();
-            this.reports.assembler.extraHours = this.calculateAssemblerHourValue() * this.assembler.extraHours;
-            this.reports.assembler.shoesBonus = this.calculateAssemblerShoesBonus();
-            this.reports.assembler.sneakersBonus = this.calculateAssemblerSneakersBonus();
-            this.reports.assembler.childrenSubsidy = this.calculateAssemblerChildrenSubsidy();
-            // Se muestra el componente de liquidación y se ocultan los botones de liquidación
-            this.render.liquidation = true;
-            this.render.liquidationButtons = false;
-            // Se almacena la liquidación del vendedor
-            liquidationsData.push({
-                pin: localStorage.getItem("pin"),
-                name: localStorage.getItem("name"), 
-                liquidation: this.reports.assembler.total
-            });
-            // Se alerta al usuario con mensaje de éxito
-            swal("¡Éxito!", "Se ha calculado la liquidación del ensamblador", "success");
-            console.log(liquidationsData)
+        if(this.checkFieldsValuesAssembler()){
+            if(this.validateMaxAssemblers()) {
+                // Se obtiene la liquidación del secretario
+                this.reports.assembler.total = this.calculateAssemblerLiquidation();
+                this.reports.assembler.extraHours = this.calculateAssemblerHourValue() * this.assembler.extraHours;
+                this.reports.assembler.shoesBonus = this.calculateAssemblerShoesBonus();
+                this.reports.assembler.sneakersBonus = this.calculateAssemblerSneakersBonus();
+                this.reports.assembler.childrenSubsidy = this.calculateAssemblerChildrenSubsidy();
+                // se muestran las liquidaciones y se oculta el formulario
+                this.render.liquidation = true;
+                // Se almacena la liquidación del ensamblador si no existe
+                const pin = localStorage.getItem("pin");
+                if(!liquidationsData.some(liquidation => liquidation.pin === pin)){
+                    liquidationsData.push({
+                        pin: pin,
+                        name: localStorage.getItem("name"), 
+                        role: localStorage.getItem("role"),
+                        liquidation: this.reports.assembler.total
+                    });
+                }
+                // Se alerta al usuario con mensaje de éxito
+                swal("¡Éxito!", "Se ha calculado la liquidación del ensamblador", "success");
+            }
         }
     }
 

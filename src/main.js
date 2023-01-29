@@ -18,7 +18,7 @@ const app = createApp({
                 secretary: false,
                 seller: false,
                 liquidation: false,
-                liquidationButtons: true
+                form: true
             },
 
             // Arreglo que contiene las liquidaciones de los empleados
@@ -30,21 +30,21 @@ const app = createApp({
             // Input de las variables globales suministradas por el administrador
             globalVariables: {
                 secretary: {
-                    salary: 1800000
+                    salary: ''
                 },
                 seller: {
-                    salary: 1800000,
-                    shoesPrice: 100000,
-                    sneakersPrice: 120000,
-                    shoesCommission: 4,
-                    sneakersCommission: 3
+                    salary: '',
+                    shoesPrice: '',
+                    sneakersPrice: '',
+                    shoesCommission: '',
+                    sneakersCommission: ''
                 },
                 assembler:{
-                    salary: 2000000,
-                    shoesAssemblerPrice: 30000,
-                    sneakersAssemblerPrice: 50000,
-                    maxShoesAssembledAmount: 1500,
-                    maxSneakersAssembledAmount: 3000,
+                    salary: '',
+                    shoesAssemblerPrice: '',
+                    sneakersAssemblerPrice: '',
+                    maxShoesAssembledAmount: '',
+                    maxSneakersAssembledAmount: '',
                 }
             },
 
@@ -90,18 +90,6 @@ const app = createApp({
             }
 
         }
-    },
-
-    mounted() {
-        // Se verifica si el usuario ya ha iniciado sesión
-        if (localStorage.getItem('user') && localStorage.getItem('role')) {
-            // Se obtiene el rol del usuario
-            const user = JSON.parse(localStorage.getItem('role'));
-            // Se muestra el componente correspondiente al rol del usuario y se oculta el componente de login
-            this.render[user.role] = true;
-            this.render.login = false;
-        }
-        
     },
     
     methods:{

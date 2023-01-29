@@ -149,7 +149,6 @@ const loginMethods = {
         this.render.secretary = false;
         this.render.seller = false;
         this.render.liquidation = false;
-        this.render.liquidationButtons = true;
         // Se asigna el nombre y el rol del usuario en blanco
         localStorage.removeItem('name');
         localStorage.removeItem('role');
