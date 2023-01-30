@@ -51,6 +51,8 @@ const administratorMethods = {
                 maxSneakersAssembledAmount: '',
             }
         }
+        // Se muestra un mensaje de éxito
+        swal('Éxito', 'Se han eliminado las variables globales correctamente', 'success');
     },
     // Este método se encarga de actualizar las variables globales
     handleSubmitAdministrator() {
@@ -60,9 +62,6 @@ const administratorMethods = {
             globalsData = this.globalVariables;
             // Se muestra un mensaje de éxito
             swal('Éxito', 'Las variables globales se han actualizado correctamente', 'success');
-            // Se borra el formulario
-            this.clearFormAdministrator();
-
         }
         
     },
