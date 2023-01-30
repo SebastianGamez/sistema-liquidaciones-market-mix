@@ -61,14 +61,14 @@ const secretaryMethods = {
         // Se calcula la liquidación del secretario
         const secretarySalary = parseInt(salary) + (parseInt(extraHours) * extraHourValue);
         // Se retorna la liquidación del secretario
-        return secretarySalary;
+        return secretarySalary % 1 === 0 ? secretarySalary : secretarySalary.toFixed(2);
     },
     // Mostrar la liquidación del secretario
     getSecretaryLiquidation(){
         if(this.checkFieldsValuesSecretary()){
             // Se obtiene la liquidación del secretario
             this.reports.secretary.total = this.calculateSecretaryLiquidation();
-            this.reports.secretary.extraHours = this.calculateSecretaryExtraHourValue() * this.secretary.extraHours;
+            this.reports.secretary.extraHours = ((this.calculateSecretaryExtraHourValue() * this.secretary.extraHours) % 1 === 0) ? this.calculateSecretaryExtraHourValue() * this.secretary.extraHours : (this.calculateSecretaryExtraHourValue() * this.secretary.extraHours).toFixed(2);
             // se muestran las liquidaciones y se oculta el formulario
             this.render.liquidation = true;
             // Se almacena la liquidación del secretario si no existe

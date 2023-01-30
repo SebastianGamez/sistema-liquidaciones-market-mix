@@ -41,7 +41,7 @@ const assemblerMethods = {
         // Se obtiene el valor de la hora del ensamblador
         const assemblerHourValue = this.calculateAssemblerHourValue();
         // Se calcula el valor de la hora extra del ensamblador
-        const assemblerExtraHourValue = assemblerHourValue * 1.8;
+        const assemblerExtraHourValue = (assemblerHourValue * 1.8);
         // Se retorna el valor de la hora extra del ensamblador
         return assemblerExtraHourValue;
     },
@@ -60,7 +60,7 @@ const assemblerMethods = {
             bonus = (shoesAssemblerPrice * 0.2) * shoesAssembled;
         }
         // Se retorna el bonus por ensamblar zapatos
-        return bonus;
+        return bonus % 1 === 0 ? bonus : bonus.toFixed(2);
     },
     // Método para calcular el bonus por ensamblar zapatillas
     calculateAssemblerSneakersBonus() {
@@ -77,7 +77,7 @@ const assemblerMethods = {
             bonus = (sneakersAssemblerPrice * 0.3) * sneakersAssembled;
         }
         // Se retorna el bonus por ensamblar zapatillas
-        return bonus;
+        return bonus % 1 === 0 ? bonus : bonus.toFixed(2);
     },
     // Método para calcular el subsidio por tener hijos
     calculateAssemblerChildrenSubsidy() {
@@ -109,7 +109,9 @@ const assemblerMethods = {
         // Se obtiene el subsidio por tener hijos
         const assemblerChildrenSubsidy = this.calculateAssemblerChildrenSubsidy();
         // Se calcula la liquidación del ensamblador y se retorna
-        return assemblerSalary + (extraHours * assemblerExtraHourValue) + assemblerShoesBonus + assemblerSneakersBonus + assemblerChildrenSubsidy + 140606;
+        const assemblerLiquidation = assemblerSalary + (extraHours * assemblerExtraHourValue) + assemblerShoesBonus + assemblerSneakersBonus + assemblerChildrenSubsidy + 140606;
+        // Se retorna la liquidación del ensamblador
+        return assemblerLiquidation % 1 === 0 ? assemblerLiquidation : assemblerLiquidation.toFixed(2);
     },
     // Método para validar el máximo de ensamblajes
     validateMaxAssemblers() {
@@ -133,7 +135,7 @@ const assemblerMethods = {
             if(this.validateMaxAssemblers()) {
                 // Se obtiene la liquidación del secretario
                 this.reports.assembler.total = this.calculateAssemblerLiquidation();
-                this.reports.assembler.extraHours = this.calculateAssemblerHourValue() * this.assembler.extraHours;
+                this.reports.assembler.extraHours = ((this.calculateAssemblerHourValue() * this.assembler.extraHours) % 1 === 0) ? this.calculateAssemblerHourValue() * this.assembler.extraHours : (this.calculateAssemblerHourValue() * this.assembler.extraHours).toFixed(2);
                 this.reports.assembler.shoesBonus = this.calculateAssemblerShoesBonus();
                 this.reports.assembler.sneakersBonus = this.calculateAssemblerSneakersBonus();
                 this.reports.assembler.childrenSubsidy = this.calculateAssemblerChildrenSubsidy();

@@ -66,7 +66,7 @@ const sellerMethods = {
         const shoesComm = (shoesPrice * (shoesCommission / 100)) * shoes;
         const sneakersComm = (sneakersPrice * (sneakersCommission / 100)) * sneakers;
         // Se retorna la comisión
-        return shoesComm + sneakersComm;
+        return (shoesComm + sneakersComm) % 1 === 0 ? (shoesComm + sneakersComm) : (shoesComm + sneakersComm).toFixed(2);
     },
     // Calcular la liquidación del vendedor
     calculateSellerLiquidation(){
@@ -80,7 +80,7 @@ const sellerMethods = {
         // Se calcula la liquidación del vendedor con el subsidio de transporte
         const sellerSalary = salary + (salary * (bonus / 100)) + commission + 140606;
         // Se retorna la liquidación del vendedor
-        return sellerSalary;
+        return sellerSalary % 1 === 0 ? sellerSalary : sellerSalary.toFixed(2);
     },
     // Mostrar la liquidación del vendedor
     getSellerLiquidation(){
