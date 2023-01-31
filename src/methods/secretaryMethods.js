@@ -101,8 +101,8 @@ const secretaryMethods = {
     // Método para obtener el reporte de liquidaciones de los secretarios
     getSecretaryLiquidations() {
         // Se obtienen las liquidaciones de los secretarios
-        this.secretaryLiquidation = secretaryLiquidations;
-        if(this.secretaryLiquidation.length > 0){
+        this.secretaryLiquidations = secretaryLiquidations;
+        if(this.secretaryLiquidations.length > 0){
             // Se muestra un mensaje de éxito
             swal("¡Éxito!", "Se han obtenido las liquidaciones", "success");
             // Se muestra el reporte de liquidaciones de los secretarios

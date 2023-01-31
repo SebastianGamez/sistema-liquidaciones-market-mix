@@ -173,7 +173,7 @@ const assemblerMethods = {
         }
     },
     // Método para obtener la liquidación de los ensambladores
-    getAssemblersLiquidation() {
+    getAssemblerLiquidations() {
         // Se obtienen las liquidaciones de los ensambladores
         this.assemblerLiquidations = assemblerLiquidations;
         if(this.assemblerLiquidations.length > 0){

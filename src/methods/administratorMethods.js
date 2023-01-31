@@ -72,7 +72,7 @@ const administratorMethods = {
             // Se muestra un mensaje de éxito
             swal("¡Éxito!", "Se han obtenido las liquidaciones", "success");
             // se muestran las liquidaciones y se oculta el formulario
-            this.render.liquidation = true;
+            this.render.liquidations = true;
             this.render.form = false;
         } else{
             // Se muestra un mensaje de error
