@@ -18,11 +18,18 @@ const app = createApp({
                 secretary: false,
                 seller: false,
                 liquidation: false,
+                liquidations: false,
                 form: true
             },
 
             // Arreglo que contiene las liquidaciones de los empleados
             liquidations: [],
+            // Arreglo que contiene las liquidaciones de los secretarios
+            secretaryLiquidations: [],
+            // Arreglo que contiene las liquidaciones de los vendedores
+            sellerLiquidations: [],
+            // Arreglo que contiene las liquidaciones de los ensambladores
+            assemblerLiquidations: [],
             
             // Input del pin que ingresa el usuario para iniciar sesión
             pin: '',
@@ -104,6 +111,17 @@ const app = createApp({
         ...sellerMethods,
         // Métodos del ensamblador
         ...assemblerMethods,
+
+        // Método para volver atrás
+        goBackOfLiquidation() {
+            this.render.liquidation = false;
+            this.render.form = true;
+        },
+        goBackOfLiquidations() {
+            this.render.liquidations = false;
+            this.render.form = true;
+        }
+
 
     },
 

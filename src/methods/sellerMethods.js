@@ -85,24 +85,55 @@ const sellerMethods = {
     // Mostrar la liquidación del vendedor
     getSellerLiquidation(){
         if(this.checkFieldsValuesSeller()){
+            // Se crea un objeto con los datos de la liquidación del vendedor
+            const sellerLiquidation = {
+                bonus: this.calculateSellerBonus(),
+                commission: this.calculateSellerCommission(),
+                total: this.calculateSellerLiquidation()
+            }
             // Se obtiene la liquidación del vendedor y sus datos
-            this.reports.seller.bonus = this.calculateSellerBonus();
-            this.reports.seller.commission = this.calculateSellerCommission();
-            this.reports.seller.total = this.calculateSellerLiquidation();
+            this.reports.seller.bonus = sellerLiquidation.bonus;
+            this.reports.seller.commission = sellerLiquidation.commission;
+            this.reports.seller.total = sellerLiquidation.total;
             // se muestran las liquidaciones y se oculta el formulario
             this.render.liquidation = true;
+            this.render.form = false;
             // Se almacena la liquidación del vendedor si no existe
             const pin = localStorage.getItem("pin");
-            if(!liquidationsData.some(liquidation => liquidation.pin === pin)){
+            if(!liquidationsData.some(liquidation => (liquidation.pin === pin && liquidation.liquidation === sellerLiquidation.total))){
+                // Se almacena la liquidación del vendedor en las liquidaciones generales
                 liquidationsData.push({
                     pin: pin,
                     name: localStorage.getItem("name"), 
                     role: localStorage.getItem("role"),
                     liquidation: this.reports.seller.total
                 });
+                // Se almacena la liquidación del vendedor en las liquidaciones del vendedor
+                sellerLiquidations.push({
+                    pin: pin,
+                    name: localStorage.getItem("name"),
+                    ...sellerLiquidation
+                });
             }
             // Se alerta al usuario con mensaje de éxito
             swal("¡Éxito!", "Se ha calculado la liquidación del vendedor", "success");
         }
+    },
+    // Método para obtener las liquidaciones de los vendedores
+    getSellerLiquidations(){
+        // Se obtienen las liquidaciones de los vendedores
+        this.sellerLiquidations = sellerLiquidations;
+        if(this.sellerLiquidations.length > 0){
+            // Se muestra un mensaje de éxito
+            swal("¡Éxito!", "Se han obtenido las liquidaciones", "success");
+            // Se muestra la tabla de liquidaciones
+            this.render.liquidations = true;
+            this.render.form = false;
+        }
+        else{
+            // Se muestra un mensaje de error
+            swal("Error", "No hay liquidaciones", "error");
+        }
     }
+
 }

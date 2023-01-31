@@ -133,29 +133,59 @@ const assemblerMethods = {
     getAssemblerLiquidation() {
         if(this.checkFieldsValuesAssembler()){
             if(this.validateMaxAssemblers()) {
+                // Se crea el objeto con los datos de la liquidación del ensamblador
+                const assemblerLiquidation = {
+                    childrenSubsidy: this.calculateAssemblerChildrenSubsidy(),
+                    extraHours: ((this.calculateAssemblerHourValue() * this.assembler.extraHours) % 1 === 0) ? this.calculateAssemblerHourValue() * this.assembler.extraHours : (this.calculateAssemblerHourValue() * this.assembler.extraHours).toFixed(2),
+                    shoesBonus: this.calculateAssemblerShoesBonus(),
+                    sneakersBonus: this.calculateAssemblerSneakersBonus(),
+                    total: this.calculateAssemblerLiquidation()
+                };
                 // Se obtiene la liquidación del secretario
-                this.reports.assembler.total = this.calculateAssemblerLiquidation();
-                this.reports.assembler.extraHours = ((this.calculateAssemblerHourValue() * this.assembler.extraHours) % 1 === 0) ? this.calculateAssemblerHourValue() * this.assembler.extraHours : (this.calculateAssemblerHourValue() * this.assembler.extraHours).toFixed(2);
-                this.reports.assembler.shoesBonus = this.calculateAssemblerShoesBonus();
-                this.reports.assembler.sneakersBonus = this.calculateAssemblerSneakersBonus();
-                this.reports.assembler.childrenSubsidy = this.calculateAssemblerChildrenSubsidy();
+                this.reports.assembler.total = assemblerLiquidation.total;
+                this.reports.assembler.extraHours = assemblerLiquidation.extraHours;
+                this.reports.assembler.shoesBonus = assemblerLiquidation.shoesBonus;
+                this.reports.assembler.sneakersBonus = assemblerLiquidation.sneakersBonus;
+                this.reports.assembler.childrenSubsidy = assemblerLiquidation.childrenSubsidy;
                 // se muestran las liquidaciones y se oculta el formulario
                 this.render.liquidation = true;
+                this.render.form = false;
                 // Se almacena la liquidación del ensamblador si no existe
                 const pin = localStorage.getItem("pin");
-                if(!liquidationsData.some(liquidation => liquidation.pin === pin)){
+                if(!liquidationsData.some(liquidation => (liquidation.pin === pin && liquidation.liquidation === assemblerLiquidation.total))){
+                    // Se almacena la liquidación del ensamblador en las liquidaciones generales
                     liquidationsData.push({
                         pin: pin,
                         name: localStorage.getItem("name"), 
                         role: localStorage.getItem("role"),
                         liquidation: this.reports.assembler.total
                     });
+                    // Se almacena la liquidación del ensamblador en las liquidaciones del ensamblador
+                    assemblerLiquidations.push({
+                        pin: pin,
+                        name: localStorage.getItem("name"),
+                        ...assemblerLiquidation
+                    });
                 }
                 // Se alerta al usuario con mensaje de éxito
                 swal("¡Éxito!", "Se ha calculado la liquidación del ensamblador", "success");
             }
         }
+    },
+    // Método para obtener la liquidación de los ensambladores
+    getAssemblersLiquidation() {
+        // Se obtienen las liquidaciones de los ensambladores
+        this.assemblerLiquidations = assemblerLiquidations;
+        if(this.assemblerLiquidations.length > 0){
+            // Se muestra la tabla de liquidaciones de los ensambladores
+            this.render.liquidations = true;
+            this.render.form = false;
+            // Se alerta al usuario con mensaje de éxito
+            swal("¡Éxito!", "Se han obtenido las liquidaciones", "success");
+        }
+        else {
+            // Se alerta al usuario con mensaje de error
+            swal("Error", "No hay liquidaciones para mostrar", "error");
+        }
     }
-
-
 }

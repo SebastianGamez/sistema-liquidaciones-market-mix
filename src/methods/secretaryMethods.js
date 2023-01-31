@@ -66,23 +66,52 @@ const secretaryMethods = {
     // Mostrar la liquidación del secretario
     getSecretaryLiquidation(){
         if(this.checkFieldsValuesSecretary()){
+            // Se crea el objeto para almacenar los datos de la liquidación del secretario
+            const secretaryLiquidation = {
+                extraHours: ((this.calculateSecretaryExtraHourValue() * this.secretary.extraHours) % 1 === 0) ? this.calculateSecretaryExtraHourValue() * this.secretary.extraHours : (this.calculateSecretaryExtraHourValue() * this.secretary.extraHours).toFixed(2),
+                total: this.calculateSecretaryLiquidation()
+            }
             // Se obtiene la liquidación del secretario
-            this.reports.secretary.total = this.calculateSecretaryLiquidation();
-            this.reports.secretary.extraHours = ((this.calculateSecretaryExtraHourValue() * this.secretary.extraHours) % 1 === 0) ? this.calculateSecretaryExtraHourValue() * this.secretary.extraHours : (this.calculateSecretaryExtraHourValue() * this.secretary.extraHours).toFixed(2);
+            this.reports.secretary.total = secretaryLiquidation.total;
+            this.reports.secretary.extraHours = secretaryLiquidation.extraHours;
             // se muestran las liquidaciones y se oculta el formulario
             this.render.liquidation = true;
+            this.render.form = false;
             // Se almacena la liquidación del secretario si no existe
             const pin = localStorage.getItem("pin");
-            if(!liquidationsData.some(liquidation => liquidation.pin === pin)){
+            if(!liquidationsData.some(liquidation => (liquidation.pin === pin && liquidation.liquidation === secretaryLiquidation.total))){
+                // Se almacena la liquidación del secretario en los datos generales de las liquidaciones
                 liquidationsData.push({
                     pin: pin,
                     name: localStorage.getItem("name"), 
                     role: localStorage.getItem("role"),
                     liquidation: this.reports.secretary.total
                 });
+                // Se almacena la liquidación del secretario en el arreglo de liquidaciones de los secretarios
+                secretaryLiquidations.push({
+                    pin: pin,
+                    name: localStorage.getItem("name"),
+                    ...secretaryLiquidation
+                });
             }
             // Se alerta al usuario con mensaje de éxito
             swal("¡Éxito!", "Se ha calculado la liquidación del secretary", "success");
+        }
+    },
+    // Método para obtener el reporte de liquidaciones de los secretarios
+    getSecretaryLiquidations() {
+        // Se obtienen las liquidaciones de los secretarios
+        this.secretaryLiquidation = secretaryLiquidations;
+        if(this.secretaryLiquidation.length > 0){
+            // Se muestra un mensaje de éxito
+            swal("¡Éxito!", "Se han obtenido las liquidaciones", "success");
+            // Se muestra el reporte de liquidaciones de los secretarios
+            this.render.liquidations = true;
+            this.render.form = false;
+        }
+        else{
+            // Se muestra un mensaje de error
+            swal("Error", "No hay liquidaciones de secretarios", "error");
         }
     }
 
